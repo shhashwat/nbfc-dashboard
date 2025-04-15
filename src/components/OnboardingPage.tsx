@@ -5,6 +5,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "./ui/button";
 import { ChevronRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const OnboardingPage = () => {
   return (
@@ -27,10 +28,12 @@ const OnboardingPage = () => {
               className={"w-6"}
             />
           </Button>
-          <Button>
-            Register New NBFC
-            <ChevronRight/>
-          </Button>
+          <Link to="/nbfc/2">
+            <Button>
+              Register New NBFC
+              <ChevronRight/>
+            </Button>
+          </Link>
         </CardContent>
         <CardFooter className="mb-auto">
           <img src="/images/onboarding_row.svg" alt="row"/>

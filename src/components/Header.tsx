@@ -2,10 +2,9 @@ import React from "react";
 
 const Header: React.FC = () => {
   return (
-    <header className="sticky top-0 z-50 bg-white">
+    <header className="sticky top-0 z-50 bg-white shadow-[0_2px_0_rgba(0,0,0,0.05)]">
       <div className="w-full">
         <nav className="flex items-center justify-between py-3">
-
           {/* Navigation Links (for large screens) */}
           <div>
             <ul className="flex space-x-4">
