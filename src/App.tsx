@@ -9,6 +9,7 @@ function App() {
 
   return (
     <>
+    {/* ONBOARDING */}
     <Routes>
       <Route
       path="/"
@@ -16,12 +17,16 @@ function App() {
       <Layout >
         <OnboardingPage />
       </Layout>}/>
+      
+      {/* SEGMENT SELECTION */}
       <Route
       path='/nbfc/2'
       element={
       <Layout >
         <SegmentSelection />
       </Layout>}/>
+
+      {/* NBFC FORM */}
       <Route
       path='/nbfc/3'
       element={

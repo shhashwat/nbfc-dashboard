@@ -1,16 +1,12 @@
-import {
-  Card,
-  CardContent,
-  CardFooter,
-} from "@/components/ui/card";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "./ui/button";
 import { ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const OnboardingPage = () => {
   return (
-    <div className="grid place-items-center min-h-[89.5dvh] p-10">
-      <Card className="w-full h-full flex items-center p-15">
+    <div className="grid place-items-center min-h-[89.5dvh] p-5">
+      <Card className="scale-95 w-full h-full flex items-center p-10">
         <div className="flex flex-col items-center max-w-[120dvh]">
           <h1 className="text-3xl font-bold">Welcome to Onboarding</h1>
           <p className="text-xs text-center text-muted-foreground mt-4 mb-6">
@@ -31,12 +27,12 @@ const OnboardingPage = () => {
           <Link to="/nbfc/2">
             <Button>
               Register New NBFC
-              <ChevronRight/>
+              <ChevronRight />
             </Button>
           </Link>
         </CardContent>
         <CardFooter className="mb-auto">
-          <img src="/images/onboarding_row.svg" alt="row"/>
+          <img src="/images/onboarding_row.svg" alt="row" />
         </CardFooter>
       </Card>
     </div>

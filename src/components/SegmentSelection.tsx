@@ -7,8 +7,8 @@ import { Link } from "react-router-dom";
 const SegmentSelection = () => {
   return (
     <div className="max-w-[300dvh] mx-auto">
-      <div className="px-30 py-20">
-        <Card className="p-5">
+      <div className="px-30 py-5">
+        <Card className="scale-95 p-5">
           <div className="flex justify-between items-center">
             <h1 className="text-xl font-bold">
               Choose the segment you want to onboard for
@@ -20,24 +20,24 @@ const SegmentSelection = () => {
             Seamlessly onboard for Co-Lending or Pool Buyout and start your
             journey
           </p>
-            <CardContent className="grid grid-cols-2 gap-4 mt-4">
-                <Link to={'/nbfc/3'}>
-                    <SegmentsCard
-                    imgSrc="/images/co-lending_segment.svg"
-                    imgAlt="Co-Lending Segment"
-                    heading="Co-Lending"
-                    subtext="Partner seamlessly to co-lend and scale your lending business."
-                    />
-                </Link>          
+          <CardContent className="grid grid-cols-2 gap-4 mt-4">
+            <Link to={"/nbfc/3"}>
+              <SegmentsCard
+                imgSrc="/images/co-lending_segment.svg"
+                imgAlt="Co-Lending Segment"
+                heading="Co-Lending"
+                subtext="Partner seamlessly to co-lend and scale your lending business."
+              />
+            </Link>
 
-                <SegmentsCard
-                imgSrc="/images/pool_buyout_segment.svg"
-                imgAlt="Pool Buyout Segment"
-                badge="Beta"
-                heading="Pool Buyout"
-                subtext="Acquire high-quality loan pools with ease and efficiency."
-                />
-            </CardContent>
+            <SegmentsCard
+              imgSrc="/images/pool_buyout_segment.svg"
+              imgAlt="Pool Buyout Segment"
+              badge="Beta"
+              heading="Pool Buyout"
+              subtext="Acquire high-quality loan pools with ease and efficiency."
+            />
+          </CardContent>
         </Card>
       </div>
     </div>
