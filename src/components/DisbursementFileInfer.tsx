@@ -1,7 +1,21 @@
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm, useFieldArray } from "react-hook-form";
+import { z } from "zod";
+
+import {
+  Form,
+  FormField,
+} from "@/components/ui/form";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -13,10 +27,83 @@ import CardHeader from "./CardHeader";
 import CardHeadline from "./CardHeadline";
 
 import { ChevronDown } from "lucide-react";
-import Tags from "./Tags";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+import { DisbursementFileTags } from "@/constants"; 
+
+const allowedValues = DisbursementFileTags.map((tag) => tag.value) as [
+  string,
+  ...string[]
+];
+
+const rowSchema = z.object({
+  platformField: z.string(),
+  column: z.enum(allowedValues, { message: "Select a column" }),
+  required: z.boolean(),
+});
+
+const formSchema = z.object({
+  mappings: z.array(rowSchema),
+});
 
 const DisbursementFileInfer = () => {
+
+  const navigate = useNavigate();
+
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      mappings: [
+        {
+          platformField: "Customer Name",
+          column: "customerName",
+          required: true,
+        },
+        {
+          platformField: "Loan Account Number",
+          column: "loanId",
+          required: false,
+        },
+        {
+          platformField: "Sanctioned Amount",
+          column: "sanctionedAmount",
+          required: true,
+        },
+        {
+          platformField: "Disbursed Amount",
+          column: "disbursedAmount",
+          required: false,
+        },
+        {
+          platformField: "Disbursement Date",
+          column: "disbursementDate",
+          required: false,
+        },
+        {
+          platformField: "Tenure (in months)",
+          column: "tenure",
+          required: false,
+        },
+        {
+          platformField: "Interest Rate (%)",
+          column: "interestRate",
+          required: false,
+        },
+      ],
+    },
+  });
+
+  const { fields } = useFieldArray({
+    control: form.control,
+    name: "mappings",
+  });
+
+  function onSubmit(data: z.infer<typeof formSchema>) {
+    console.log("Form data submitted:", data);
+
+    navigate("/nbfc/6");
+  }
+
   return (
     <div className="flex flex-col space-y-4 p-5">
       <CardHeader
@@ -25,7 +112,11 @@ const DisbursementFileInfer = () => {
       />
       <div className="bg-white shadow-sm rounded-lg p-4 space-y-3 space-x-4">
         <div className="flex items-center justify-between -mt-3">
-          <CardHeadline title="Upload Disbursement File" hr="no" className="text-sm mt-3 ml-2"/>
+          <CardHeadline
+            title="Upload Disbursement File"
+            hr="no"
+            className="text-sm mt-3 ml-2"
+          />
 
           <Button
             type="button"
@@ -39,87 +130,70 @@ const DisbursementFileInfer = () => {
 
         <hr />
 
-        <Table>
-          <TableCaption>
-            <Link to="/nbfc/6" className="text-blue-600 hover:text-blue-800">
-              Next
-            </Link>
-          </TableCaption>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Platform Field</TableHead>
-              <TableHead>Expected Column Name (from NBFC file)</TableHead>
-              <TableHead>Required</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            <TableRow>
-              <TableCell>Customer Name</TableCell>
-              <TableCell>
-                <Tags tag="Customer_Name" />
-                <Tags tag="Borrower_Name" />
-              </TableCell>
-              <TableCell>
-                <Switch />
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Loan Account Number</TableCell>
-              <TableCell>
-                <Tags tag="Loan_ID" />
-                <Tags tag="Loan_Account_Number" />
-              </TableCell>
-              <TableCell>
-                <Switch />
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Sanctioned Amount</TableCell>
-              <TableCell>
-                <Tags tag="Sanctioned_Amount" />
-              </TableCell>
-              <TableCell>
-                <Switch />
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Disbursed Amount</TableCell>
-              <TableCell>
-                <Tags />
-              </TableCell>
-              <TableCell>
-                <Switch />
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Disbursement Date</TableCell>
-              <TableCell>
-                <Tags />
-              </TableCell>
-              <TableCell>
-                <Switch />
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Tenure (in months)</TableCell>
-              <TableCell>
-                <Tags />
-              </TableCell>
-              <TableCell>
-                <Switch />
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Interest Rate (%)</TableCell>
-              <TableCell>
-                <Tags />
-              </TableCell>
-              <TableCell>
-                <Switch />
-              </TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)}>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Platform Field</TableHead>
+                  <TableHead>Expected Column Name (from NBFC file)</TableHead>
+                  <TableHead>Required</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {fields.map((field, index) => (
+                  <TableRow key={field.id}>
+                    <TableCell>{field.platformField}</TableCell>
+                    <TableCell>
+                      <FormField
+                        control={form.control}
+                        name={`mappings.${index}.column`}
+                        render={({ field }) => (
+                          <Select
+                            onValueChange={field.onChange}
+                            value={field.value}
+                          >
+                            <SelectTrigger className="w-[220px]">
+                              <SelectValue placeholder="Select tag" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {DisbursementFileTags.map((tag) => (
+                                <SelectItem key={tag.value} value={tag.value}>
+                                  {tag.name}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        )}
+                      />
+                    </TableCell>
+                    <TableCell>
+                      <FormField
+                        control={form.control}
+                        name={`mappings.${index}.required`}
+                        render={({ field }) => (
+                          <Switch
+                            checked={field.value}
+                            onCheckedChange={field.onChange}
+                          />
+                        )}
+                      />
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+
+            <div className="flex justify-end mt-4">
+              <Button
+                type="submit"
+                className="bg-blue-600 hover:bg-blue-700 text-white"
+              >
+                Submit
+              </Button>
+            </div>
+          </form>
+        </Form>
       </div>
     </div>
   );

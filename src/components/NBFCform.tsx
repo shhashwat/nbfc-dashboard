@@ -26,6 +26,8 @@ import { Input } from "@/components/ui/input";
 import CardHeader from "./CardHeader";
 import CardHeadline from "./CardHeadline";
 
+import { rbiLisenceTypes } from "@/constants";
+
 const fileSchema = z
   .instanceof(File, { message: "File is required" })
   .refine((file) => file.size <= 5 * 1024 * 1024, {
@@ -194,42 +196,11 @@ const NBFCform = () => {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="Investment and Credit Company">
-                          Investment and Credit Company (ICC)
-                        </SelectItem>
-                        <SelectItem value="Infrastructure Finance Company">
-                          Infrastructure Finance Company (NBFC-IFC)
-                        </SelectItem>
-                        <SelectItem value="Infrastructure Debt Fund">
-                          Infrastructure Debt Fund (NBFC-IDF)
-                        </SelectItem>
-                        <SelectItem value="Micro Finance Institution">
-                          Micro Finance Institution (NBFC-MFI)
-                        </SelectItem>
-                        <SelectItem value="Core Investment Company">
-                          Core Investment Company (CIC)
-                        </SelectItem>
-                        <SelectItem value="Asset Finance Company">
-                          Asset Finance Company (AFC)
-                        </SelectItem>
-                        <SelectItem value="Housing Finance Company">
-                          Housing Finance Company (HFC)
-                        </SelectItem>
-                        <SelectItem value="Peer to Peer Lending Platform">
-                          Peer-to-Peer Lending Platform (NBFC-P2P)
-                        </SelectItem>
-                        <SelectItem value="Account Aggregator">
-                          Account Aggregator (NBFC-AA)
-                        </SelectItem>
-                        <SelectItem value="Factor">
-                          Factor (NBFC-Factor)
-                        </SelectItem>
-                        <SelectItem value="Mortgage Guarantee Company">
-                          Mortgage Guarantee Company (MGC)
-                        </SelectItem>
-                        <SelectItem value="Non-Operative Financial Holding Company">
-                          Non-Operative Financial Holding Company (NOFHC)
-                        </SelectItem>
+                        {rbiLisenceTypes.map((item) => (
+                          <SelectItem key={item.value} value={item.value}>
+                            {item.type}
+                          </SelectItem>
+                        ))}
                       </SelectContent>
                     </Select>
                     <FormMessage />
