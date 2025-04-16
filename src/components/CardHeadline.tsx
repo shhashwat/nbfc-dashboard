@@ -1,7 +1,9 @@
-const CardHeadline = ({title, hr = 'yes'}: {title: string, hr?: string}) => {
+import { cn } from "@/lib/utils";
+
+const CardHeadline = ({title, hr = 'yes', className}: {title: string, hr?: string, className?:string}) => {
   return (
     <>
-      <h1 className="text-lg font-bold">{title}</h1>
+      <h1 className={cn("text-lg font-bold", className)}>{title}</h1>
 
       {hr === "yes" && <hr />}
     </>

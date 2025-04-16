@@ -6,6 +6,7 @@ import SegmentSelection from './components/SegmentSelection';
 import NBFCform from './components/NBFCform';
 import DisbursementFileUpload from './components/DisbursementFileUpload';
 import DisbursementFileInfer from './components/DisbursementFileInfer';
+import BREConfig from './components/BREConfig';
 
 function App() {
 
@@ -50,6 +51,14 @@ function App() {
       element={
       <Layout >
         <DisbursementFileInfer />
+      </Layout>}/>
+
+      {/* BRE CONFIG */}
+      <Route
+      path='/nbfc/6'
+      element={
+      <Layout >
+        <BREConfig />
       </Layout>}/>
     </Routes>
     </>
