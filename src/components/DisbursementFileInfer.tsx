@@ -62,7 +62,7 @@ const DisbursementFileInfer = () => {
         {
           platformField: "Loan Account Number",
           column: "loanId",
-          required: false,
+          required: true,
         },
         {
           platformField: "Sanctioned Amount",
@@ -72,22 +72,22 @@ const DisbursementFileInfer = () => {
         {
           platformField: "Disbursed Amount",
           column: "disbursedAmount",
-          required: false,
+          required: true,
         },
         {
           platformField: "Disbursement Date",
           column: "disbursementDate",
-          required: false,
+          required: true,
         },
         {
           platformField: "Tenure (in months)",
           column: "tenure",
-          required: false,
+          required: true,
         },
         {
           platformField: "Interest Rate (%)",
           column: "interestRate",
-          required: false,
+          required: true,
         },
       ],
     },
