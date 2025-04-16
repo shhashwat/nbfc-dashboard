@@ -1,3 +1,11 @@
+import { useRef } from "react";
+
+import { useForm, SubmitHandler } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+
+import { useNavigate } from "react-router-dom";
+
 import {
   Form,
   FormControl,
@@ -15,10 +23,8 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
+import CardHeader from "./CardHeader";
+import CardHeadline from "./CardHeadline";
 
 const fileSchema = z
   .instanceof(File, { message: "File is required" })
@@ -27,7 +33,7 @@ const fileSchema = z
   })
   .refine((file) => file.type === "application/pdf", {
     message: "Only PDF files are accepted",
-  });
+  }).optional();
 
 const formSchema = z.object({
   nbfcName: z.string().min(4, { message: "NBFC Name is required" }),
@@ -39,15 +45,17 @@ const formSchema = z.object({
   rbiLicenseType: z.enum(
     [
       "Investment and Credit Company",
-      "Account Aggregator",
-      "Core Investment Company",
       "Infrastructure Finance Company",
+      "Infrastructure Debt Fund",
       "Micro Finance Institution",
-      "Factor",
+      "Core Investment Company",
+      "Asset Finance Company",
       "Housing Finance Company",
       "Peer to Peer Lending Platform",
+      "Account Aggregator",
+      "Factor",
+      "Mortgage Guarantee Company",
       "Non-Operative Financial Holding Company",
-      "Commodity and Derivatives Exchange",
     ],
     { message: "RBI License Type is required" }
   ),
@@ -93,6 +101,9 @@ const formSchema = z.object({
 
 
 const NBFCform = () => {
+
+  const navigate = useNavigate();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -116,20 +127,29 @@ const NBFCform = () => {
     },
   });
 
+  const onSubmit: SubmitHandler<z.infer<typeof formSchema>> = (data) => {
+    console.log("Form submitted with data:", data);
+    // Add your processing logic here (e.g., API calls to save data).
+    navigate("/nbfc/4");
+  };
+
   return (
     <div className="flex flex-col space-y-4 p-5">
-      <span>
-        <h2 className="font-bold text-lg">NBFC Profile Details</h2>
-        <p className="text-sm text-muted-foreground">
-          Tell us about your NBFC to begin your onboarding journey.
-        </p>
-      </span>
+      <CardHeader
+        title="NBFC Profile Details"
+        subtitle="Tell us about your NBFC to begin your onboarding journey."
+      />
+
       <Form {...form}>
-        <form id="nbfc-form" className="space-y-4">
+        <form
+          id="nbfc-form"
+          className="space-y-4"
+          onSubmit={form.handleSubmit(onSubmit)}
+        >
+          {/* NBFC Establishment Details */}
           <div className="bg-white shadow-sm rounded-lg p-5 space-y-3 space-x-4">
-            <h1 className="text-lg font-bold">1. NBFC Establishment Details</h1>
-            <hr />
-            <span className="grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3 space-x-4 space-y-4 md:space-y-0">
+            <CardHeadline title="1. NBFC Establishment Details" />
+            <span className="grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3 space-x-4 space-y-1">
               <FormField
                 control={form.control}
                 name="nbfcName"
@@ -177,30 +197,38 @@ const NBFCform = () => {
                         <SelectItem value="Investment and Credit Company">
                           Investment and Credit Company (ICC)
                         </SelectItem>
-                        <SelectItem value="Account Aggregator">
-                          Account Aggregator
+                        <SelectItem value="Infrastructure Finance Company">
+                          Infrastructure Finance Company (NBFC-IFC)
+                        </SelectItem>
+                        <SelectItem value="Infrastructure Debt Fund">
+                          Infrastructure Debt Fund (NBFC-IDF)
+                        </SelectItem>
+                        <SelectItem value="Micro Finance Institution">
+                          Micro Finance Institution (NBFC-MFI)
                         </SelectItem>
                         <SelectItem value="Core Investment Company">
                           Core Investment Company (CIC)
                         </SelectItem>
-                        <SelectItem value="Infrastructure Finance Company">
-                          Infrastructure Finance Company (IFC)
+                        <SelectItem value="Asset Finance Company">
+                          Asset Finance Company (AFC)
                         </SelectItem>
-                        <SelectItem value="Micro Finance Institution">
-                          Micro Finance Institution (MFI)
-                        </SelectItem>
-                        <SelectItem value="Factor">Factor</SelectItem>
                         <SelectItem value="Housing Finance Company">
-                          Housing Finance Company
+                          Housing Finance Company (HFC)
                         </SelectItem>
                         <SelectItem value="Peer to Peer Lending Platform">
-                          Peer to Peer Lending Platform (P2P)
+                          Peer-to-Peer Lending Platform (NBFC-P2P)
+                        </SelectItem>
+                        <SelectItem value="Account Aggregator">
+                          Account Aggregator (NBFC-AA)
+                        </SelectItem>
+                        <SelectItem value="Factor">
+                          Factor (NBFC-Factor)
+                        </SelectItem>
+                        <SelectItem value="Mortgage Guarantee Company">
+                          Mortgage Guarantee Company (MGC)
                         </SelectItem>
                         <SelectItem value="Non-Operative Financial Holding Company">
                           Non-Operative Financial Holding Company (NOFHC)
-                        </SelectItem>
-                        <SelectItem value="Commodity and Derivatives Exchange">
-                          Commodity and Derivatives Exchange
                         </SelectItem>
                       </SelectContent>
                     </Select>
@@ -249,10 +277,11 @@ const NBFCform = () => {
               />
             </span>
           </div>
+
+          {/* NBFC Contact Details */}
           <div className="bg-white shadow-sm rounded-lg p-5 space-y-3 space-x-4">
-            <h1 className="text-lg font-bold">2. NBFC Contact Details</h1>
-            <hr />
-            <span className="grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3 space-x-4 space-y-4 md:space-y-0">
+            <CardHeadline title="2. NBFC Contact Details" />
+            <span className="grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3 space-x-4 space-y-1">
               <FormField
                 control={form.control}
                 name="regAddress"
@@ -324,14 +353,483 @@ const NBFCform = () => {
               />
             </span>
           </div>
-          <div className="bg-white shadow-sm rounded-lg p-5 space-y-3 space-x-4">
-            <h1 className="text-lg font-bold">3. Upload Required Documents</h1>
-            <hr />
-            <span className="grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3 space-x-4 space-y-4 md:space-y-0">
 
+          {/* NBFC Document Upload */}
+          <div className="bg-white shadow-sm rounded-lg p-5 space-y-3 space-x-4">
+            <CardHeadline title="3. Upload Required Documents" />
+            <span className="grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3 space-x-4 space-y-1">
+              <FormField
+                control={form.control}
+                name="rbiRegCertificate"
+                render={({ field }) => {
+                  const fileRef = useRef<HTMLInputElement | null>(null);
+
+                  return (
+                    <FormItem>
+                      <FormLabel>RBI Registration Certificate</FormLabel>
+
+                      {/* Hidden File Input */}
+                      <input
+                        type="file"
+                        accept="application/pdf"
+                        ref={(e) => {
+                          fileRef.current = e;
+                          field.ref(e);
+                        }}
+                        onChange={(e) => field.onChange(e.target.files?.[0])}
+                        className="hidden"
+                      />
+
+                      {/* Buttons Row */}
+                      <div className="flex gap-2">
+                        {/* Sample Button (non-functional) */}
+                        <Button
+                          type="button"
+                          variant="outline"
+                          className="rounded-sm bg-white text-blue-600 border-blue-500 hover:bg-blue-50"
+                        >
+                          Sample
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="ml-2 h-4 w-4"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V4"
+                            />
+                          </svg>
+                        </Button>
+
+                        {/* Upload Button */}
+                        <Button
+                          type="button"
+                          className="rounded-sm bg-blue-500 hover:bg-blue-600 text-white"
+                          onClick={() => fileRef.current?.click()}
+                        >
+                          {field.value?.name || "Upload"}
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="ml-2 h-4 w-4"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5-5m0 0l5 5m-5-5v12"
+                            />
+                          </svg>
+                        </Button>
+                      </div>
+
+                      <FormMessage />
+                    </FormItem>
+                  );
+                }}
+              />
+
+              <FormField
+                control={form.control}
+                name="boardRes"
+                render={({ field }) => {
+                  const fileRef = useRef<HTMLInputElement | null>(null);
+
+                  return (
+                    <FormItem>
+                      <FormLabel>Board Resolution (for partnership)</FormLabel>
+
+                      {/* Hidden File Input */}
+                      <input
+                        type="file"
+                        accept="application/pdf"
+                        ref={(e) => {
+                          fileRef.current = e;
+                          field.ref(e);
+                        }}
+                        onChange={(e) => field.onChange(e.target.files?.[0])}
+                        className="hidden"
+                      />
+
+                      {/* Buttons Row */}
+                      <div className="flex gap-2">
+                        {/* Sample Button (non-functional) */}
+                        <Button
+                          type="button"
+                          variant="outline"
+                          className="rounded-sm bg-white text-blue-600 border-blue-500 hover:bg-blue-50"
+                        >
+                          Sample
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="ml-2 h-4 w-4"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V4"
+                            />
+                          </svg>
+                        </Button>
+
+                        {/* Upload Button */}
+                        <Button
+                          type="button"
+                          className="rounded-sm bg-blue-500 hover:bg-blue-600 text-white"
+                          onClick={() => fileRef.current?.click()}
+                        >
+                          {field.value?.name || "Upload"}
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="ml-2 h-4 w-4"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5-5m0 0l5 5m-5-5v12"
+                            />
+                          </svg>
+                        </Button>
+                      </div>
+
+                      <FormMessage />
+                    </FormItem>
+                  );
+                }}
+              />
+
+              <FormField
+                control={form.control}
+                name="gstCertificate"
+                render={({ field }) => {
+                  const fileRef = useRef<HTMLInputElement | null>(null);
+
+                  return (
+                    <FormItem>
+                      <FormLabel>GST Certificate</FormLabel>
+
+                      {/* Hidden File Input */}
+                      <input
+                        type="file"
+                        accept="application/pdf"
+                        ref={(e) => {
+                          fileRef.current = e;
+                          field.ref(e);
+                        }}
+                        onChange={(e) => field.onChange(e.target.files?.[0])}
+                        className="hidden"
+                      />
+
+                      {/* Buttons Row */}
+                      <div className="flex gap-2">
+                        {/* Sample Button (non-functional) */}
+                        <Button
+                          type="button"
+                          variant="outline"
+                          className="rounded-sm bg-white text-blue-600 border-blue-500 hover:bg-blue-50"
+                        >
+                          Sample
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="ml-2 h-4 w-4"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V4"
+                            />
+                          </svg>
+                        </Button>
+
+                        {/* Upload Button */}
+                        <Button
+                          type="button"
+                          className="rounded-sm bg-blue-500 hover:bg-blue-600 text-white"
+                          onClick={() => fileRef.current?.click()}
+                        >
+                          {field.value?.name || "Upload"}
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="ml-2 h-4 w-4"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5-5m0 0l5 5m-5-5v12"
+                            />
+                          </svg>
+                        </Button>
+                      </div>
+
+                      <FormMessage />
+                    </FormItem>
+                  );
+                }}
+              />
+
+              <FormField
+                control={form.control}
+                name="panAndTanDocs"
+                render={({ field }) => {
+                  const fileRef = useRef<HTMLInputElement | null>(null);
+
+                  return (
+                    <FormItem>
+                      <FormLabel>PAN & TAN Documents</FormLabel>
+
+                      {/* Hidden File Input */}
+                      <input
+                        type="file"
+                        accept="application/pdf"
+                        ref={(e) => {
+                          fileRef.current = e;
+                          field.ref(e);
+                        }}
+                        onChange={(e) => field.onChange(e.target.files?.[0])}
+                        className="hidden"
+                      />
+
+                      {/* Buttons Row */}
+                      <div className="flex gap-2">
+                        {/* Sample Button (non-functional) */}
+                        <Button
+                          type="button"
+                          variant="outline"
+                          className="rounded-sm bg-white text-blue-600 border-blue-500 hover:bg-blue-50"
+                        >
+                          Sample
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="ml-2 h-4 w-4"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V4"
+                            />
+                          </svg>
+                        </Button>
+
+                        {/* Upload Button */}
+                        <Button
+                          type="button"
+                          className="rounded-sm bg-blue-500 hover:bg-blue-600 text-white"
+                          onClick={() => fileRef.current?.click()}
+                        >
+                          {field.value?.name || "Upload"}
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="ml-2 h-4 w-4"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5-5m0 0l5 5m-5-5v12"
+                            />
+                          </svg>
+                        </Button>
+                      </div>
+
+                      <FormMessage />
+                    </FormItem>
+                  );
+                }}
+              />
+
+              <FormField
+                control={form.control}
+                name="cancelledCheque"
+                render={({ field }) => {
+                  const fileRef = useRef<HTMLInputElement | null>(null);
+
+                  return (
+                    <FormItem>
+                      <FormLabel>Cancelled Cheque</FormLabel>
+
+                      {/* Hidden File Input */}
+                      <input
+                        type="file"
+                        accept="application/pdf"
+                        ref={(e) => {
+                          fileRef.current = e;
+                          field.ref(e);
+                        }}
+                        onChange={(e) => field.onChange(e.target.files?.[0])}
+                        className="hidden"
+                      />
+
+                      {/* Buttons Row */}
+                      <div className="flex gap-2">
+                        {/* Sample Button (non-functional) */}
+                        <Button
+                          type="button"
+                          variant="outline"
+                          className="rounded-sm bg-white text-blue-600 border-blue-500 hover:bg-blue-50"
+                        >
+                          Sample
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="ml-2 h-4 w-4"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V4"
+                            />
+                          </svg>
+                        </Button>
+
+                        {/* Upload Button */}
+                        <Button
+                          type="button"
+                          className="rounded-sm bg-blue-500 hover:bg-blue-600 text-white"
+                          onClick={() => fileRef.current?.click()}
+                        >
+                          {field.value?.name || "Upload"}
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="ml-2 h-4 w-4"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5-5m0 0l5 5m-5-5v12"
+                            />
+                          </svg>
+                        </Button>
+                      </div>
+
+                      <FormMessage />
+                    </FormItem>
+                  );
+                }}
+              />
+
+              <FormField
+                control={form.control}
+                name="companyLogo"
+                render={({ field }) => {
+                  const fileRef = useRef<HTMLInputElement | null>(null);
+
+                  return (
+                    <FormItem>
+                      <FormLabel>Company Logo (for platform use)</FormLabel>
+
+                      {/* Hidden File Input */}
+                      <input
+                        type="file"
+                        accept="application/pdf"
+                        ref={(e) => {
+                          fileRef.current = e;
+                          field.ref(e);
+                        }}
+                        onChange={(e) => field.onChange(e.target.files?.[0])}
+                        className="hidden"
+                      />
+
+                      {/* Buttons Row */}
+                      <div className="flex gap-2">
+                        {/* Sample Button (non-functional) */}
+                        {/* <Button
+                          type="button"
+                          variant="outline"
+                          className="rounded-sm bg-white text-blue-600 border-blue-500 hover:bg-blue-50"
+                        >
+                          Sample
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="ml-2 h-4 w-4"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V4"
+                            />
+                          </svg>
+                        </Button> */}
+
+                        {/* Upload Button */}
+                        <Button
+                          type="button"
+                          className="rounded-sm bg-blue-500 hover:bg-blue-600 text-white"
+                          onClick={() => fileRef.current?.click()}
+                        >
+                          {field.value?.name || "Upload"}
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="ml-2 h-4 w-4"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5-5m0 0l5 5m-5-5v12"
+                            />
+                          </svg>
+                        </Button>
+                      </div>
+
+                      <FormMessage />
+                    </FormItem>
+                  );
+                }}
+              />
             </span>
           </div>
-          <Button type="submit">Submit</Button>
+
+          <span className="flex justify-end">
+            <Button
+              className="p-5 text-lg rounded-sm bg-blue-500 hover:bg-blue-600 text-white flex"
+              type="submit"
+            >
+              Submit
+            </Button>
+          </span>
         </form>
       </Form>
     </div>

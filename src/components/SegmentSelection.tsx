@@ -30,13 +30,16 @@ const SegmentSelection = () => {
               />
             </Link>
 
-            <SegmentsCard
-              imgSrc="/images/pool_buyout_segment.svg"
-              imgAlt="Pool Buyout Segment"
-              badge="Beta"
-              heading="Pool Buyout"
-              subtext="Acquire high-quality loan pools with ease and efficiency."
-            />
+            <Link to={'/nbfc/3'}>
+              <SegmentsCard
+                imgSrc="/images/pool_buyout_segment.svg"
+                imgAlt="Pool Buyout Segment"
+                badge="Beta"
+                heading="Pool Buyout"
+                subtext="Acquire high-quality loan pools with ease and efficiency."
+              />
+            </Link>
+
           </CardContent>
         </Card>
       </div>

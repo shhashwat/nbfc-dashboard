@@ -4,6 +4,8 @@ import Layout from './components/Layout';
 import OnboardingPage from './components/OnboardingPage';
 import SegmentSelection from './components/SegmentSelection';
 import NBFCform from './components/NBFCform';
+import DisbursementFileUpload from './components/DisbursementFileUpload';
+import DisbursementFileInfer from './components/DisbursementFileInfer';
 
 function App() {
 
@@ -32,6 +34,22 @@ function App() {
       element={
       <Layout >
         <NBFCform />
+      </Layout>}/>
+
+      {/* DISBURSEMENT FILE UPLOAD */}
+      <Route
+      path='/nbfc/4'
+      element={
+      <Layout >
+        <DisbursementFileUpload />
+      </Layout>}/>
+
+      {/* DISBURSEMENT FILE INFER */}
+      <Route
+      path='/nbfc/5'
+      element={
+      <Layout >
+        <DisbursementFileInfer />
       </Layout>}/>
     </Routes>
     </>
