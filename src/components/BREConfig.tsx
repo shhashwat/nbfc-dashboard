@@ -18,6 +18,7 @@ import {
   breConfigIncomeParams,
   breConfigOccupationParams,
   breConfigDemographicParams,
+  breConfigTabContent,
 } from "@/lib/constants";
 
 const BREConfig = () => {
@@ -65,59 +66,16 @@ const handleTabChange = (tab: string) => {
             Exit
           </Button>
         </TabsList>
-        <TabsContent value="bureau">
-          <BRETables
-            title={"Bureau Rules"}
-            subtitle="Get creditworthiness and repayment history"
-            navTo="bankStatement"
-            paramsArr={breConfigBureauParams}
-          />
-        </TabsContent>
-
-        <TabsContent value="bankStatement">
-          <BRETables
-            title={"Bank Statement"}
-            subtitle="Get cash flow assessment & repayment ability"
-            navTo="kyc"
-            paramsArr={breConfigBankStatementParams}
-          />
-        </TabsContent>
-
-        <TabsContent value="kyc">
-          <BRETables
-            title={"KYC"}
-            subtitle="Get Identity validation and fraud prevention"
-            navTo="income"
-            paramsArr={breConfigKycParams}
-          />
-        </TabsContent>
-
-        <TabsContent value="income">
-          <BRETables
-            title={"Income"}
-            subtitle="Get Validate income consistency"
-            navTo="occupation"
-            paramsArr={breConfigIncomeParams}
-          />
-        </TabsContent>
-
-        <TabsContent value="occupation">
-          <BRETables
-            title={"Occupation"}
-            subtitle="Understand stability and risk based on employment"
-            navTo="demographic"
-            paramsArr={breConfigOccupationParams}
-          />
-        </TabsContent>
-
-        <TabsContent value="demographic">
-          <BRETables
-            title={"Demographic"}
-            subtitle="Understand stability and risk based on employment"
-            navTo=""
-            paramsArr={breConfigDemographicParams}
-          />
-        </TabsContent>
+        {breConfigTabContent.map((tab) => (
+          <TabsContent key={tab.value} value={tab.value}>
+            <BRETables
+              title={tab.title}
+              subtitle={tab.subtitle}
+              navTo={tab.navTo}
+              paramsArr={tab.paramsArr}
+            />
+          </TabsContent>
+        ))}
       </Tabs>
     </div>
   );

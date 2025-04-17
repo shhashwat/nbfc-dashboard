@@ -228,3 +228,48 @@ export const breConfigDemographicParams = [
     subtitle: "Flag based on high-risk geographic areas.",
   },
 ];
+
+export const breConfigTabContent = [
+  {
+    value: "bureau",
+    title: "Bureau Rules",
+    subtitle: "Get creditworthiness and repayment history",
+    navTo: "bankStatement",
+    paramsArr: breConfigBureauParams,
+  },
+  {
+    value: "bankStatement",
+    title: "Bank Statement",
+    subtitle: "Get cash flow assessment & repayment ability",
+    navTo: "kyc",
+    paramsArr: breConfigBankStatementParams,
+  },
+  {
+    value: "kyc",
+    title: "KYC",
+    subtitle: "Get Identity validation and fraud prevention",
+    navTo: "income",
+    paramsArr: breConfigKycParams,
+  },
+  {
+    value: "income",
+    title: "Income",
+    subtitle: "Get Validate income consistency",
+    navTo: "occupation",
+    paramsArr: breConfigIncomeParams,
+  },
+  {
+    value: "occupation",
+    title: "Occupation",
+    subtitle: "Understand stability and risk based on employment",
+    navTo: "demographic",
+    paramsArr: breConfigOccupationParams,
+  },
+  {
+    value: "demographic",
+    title: "Demographic",
+    subtitle: "Understand stability and risk based on employment",
+    navTo: "",
+    paramsArr: breConfigDemographicParams,
+  },
+];

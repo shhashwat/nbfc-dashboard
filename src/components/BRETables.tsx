@@ -66,7 +66,7 @@ const formSchema = z.object({
       console.log("Weightage:", weightage);
       console.log(`${title} Form data submitted:`, data);
 
-      navigate(`#${navTo}`);
+      {title !== "Demographic" ? navigate(`#${navTo}`) : navigate("/")}
     };
 
     return (
