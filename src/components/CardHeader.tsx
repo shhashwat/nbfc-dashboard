@@ -1,17 +1,48 @@
-interface CardHeaderProps {
-    title: string;
-    subtitle?: string;
-}
+import { forwardRef, useImperativeHandle, useRef } from "react";
+import { cn } from "@/lib/utils";
+import { Input } from "@/components/ui/input";
 
-const CardHeader = ({title, subtitle}: CardHeaderProps) => {
-  return (
-    <span>
-      <h2 className="font-bold text-lg">{title}</h2>
-      <p className="text-sm text-muted-foreground">
-        {subtitle}
-      </p>
-    </span>
-  );
-}
+const CardHeader = forwardRef<CardHeaderHandle, CardHeaderProps>(
+  ({ title, subtitle, pclassName, weightage = false }, ref) => {
+    // Internal ref to the real <input> DOM node
+    const inputRef = useRef<HTMLInputElement>(null);
 
-export default CardHeader
+    // Expose just the API you want via the parent ref
+    useImperativeHandle(
+      ref,
+      () => ({
+        getValue: () => inputRef.current?.value ?? "",
+      }),
+      []
+    );
+
+    return (
+      <span className="flex items-center justify-between min-w-[100dvh]">
+        <span>
+          <h2 className="font-bold text-lg">{title}</h2>
+          <p className={cn("text-sm text-muted-foreground", pclassName)}>
+            {subtitle}
+          </p>
+        </span>
+        {weightage && (
+          <span className="flex items-center justify-center text-sm font-semibold text-gray-500 space-x-2">
+            Weightage
+            <Input
+              // Attach internal ref
+              ref={inputRef}
+              type="number"
+              className="w-[70px] ml-2 text-sm text-center border-gray-300 bg-white rounded-md focus:ring-0 focus:border-gray-300"
+              placeholder="0%"
+              min={0}
+              max={100}
+              step={1}
+            />
+            <img src="/images/icons/weightage_icon.svg" alt="edit" />
+          </span>
+        )}
+      </span>
+    );
+  }
+);
+
+export default CardHeader;

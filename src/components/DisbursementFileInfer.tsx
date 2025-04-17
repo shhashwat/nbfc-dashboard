@@ -27,9 +27,12 @@ import CardHeader from "./CardHeader";
 import CardHeadline from "./CardHeadline";
 
 import { ChevronDown } from "lucide-react";
+
 import { useNavigate } from "react-router-dom";
 
-import { DisbursementFileTags } from "@/constants"; 
+import { DisbursementFileTags, DisbursementFileInferTableHeaders } from "@/lib/constants/index"; 
+
+
 
 const allowedValues = DisbursementFileTags.map((tag) => tag.value) as [
   string,
@@ -135,9 +138,10 @@ const DisbursementFileInfer = () => {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Platform Field</TableHead>
-                  <TableHead>Expected Column Name (from NBFC file)</TableHead>
-                  <TableHead>Required</TableHead>
+                  {DisbursementFileInferTableHeaders.map((tab) => (
+                    <TableHead key={tab.key}>
+                      {tab.name}
+                    </TableHead>))}
                 </TableRow>
               </TableHeader>
               <TableBody>

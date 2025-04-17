@@ -1,90 +1,122 @@
+import { useEffect, useState } from "react";
+
+import { useLocation, useNavigate } from "react-router-dom";
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Button } from "@/components/ui/button";
 import CardHeader from "./CardHeader";
 
+import BRETables from "./BRETables";
+
+import { ChevronLeft } from "lucide-react";
+
+import {
+  breConfigTabs,
+  breConfigBureauParams,
+  breConfigBankStatementParams,
+  breConfigKycParams,
+  breConfigIncomeParams,
+  breConfigOccupationParams,
+  breConfigDemographicParams,
+} from "@/lib/constants";
+
 const BREConfig = () => {
+const location = useLocation();
+const navigate = useNavigate();
+
+// Extract tab from hash (without the `#`)
+const currentHash = location.hash.replace("#", "") || "bureau";
+const [activeTab, setActiveTab] = useState(currentHash);
+
+// Sync active tab with hash
+useEffect(() => {
+  const hash = location.hash.replace("#", "") || "bureau";
+  setActiveTab(hash);
+}, [location.hash]);
+
+const handleTabChange = (tab: string) => {
+  setActiveTab(tab);
+  navigate(`#${tab}`); // update URL hash
+};
+
   return (
     <div className="flex flex-col space-y-4 p-5">
       <CardHeader title="BRE Configuration" />
 
-      <Tabs defaultValue="bureau" className="w-[400px]">
-        <TabsList className="flex items-center border-b border-gray-200">
-          <TabsTrigger
-            value="bureau"
-            className="bre-tabs"
+      <Tabs
+        value={activeTab}
+        onValueChange={handleTabChange}
+        className="w-[400px]"
+      >
+        <TabsList className="">
+          {breConfigTabs.map((tab) => (
+            <TabsTrigger className="bre-tabs" value={tab.value} key={tab.value}>
+              {tab.name}
+            </TabsTrigger>
+          ))}
+
+          <Button
+            className="ml-60 text-[#1678F5] hover:text-[#016FF4] hover:bg-blend-soft-light underline"
+            variant="ghost"
           >
-            1. Bureau
-          </TabsTrigger>
-          <TabsTrigger
-            value="bankStatement"
-            className="bre-tabs"
-          >
-            2. Bank Statement
-          </TabsTrigger>
-          <TabsTrigger
-            value="kyc"
-            className="bre-tabs"
-          >
-            3. KYC
-          </TabsTrigger>
-          <TabsTrigger
-            value="income"
-            className="bre-tabs"
-          >
-            4. Income
-          </TabsTrigger>
-          <TabsTrigger
-            value="occupation"
-            className="bre-tabs"
-          >
-            5. Occupation
-          </TabsTrigger>
-          <TabsTrigger
-            value="demographic"
-            className="bre-tabs"
-          >
-            6. Demographic
-          </TabsTrigger>
+            <i>
+              <ChevronLeft />
+            </i>
+            Exit
+          </Button>
         </TabsList>
         <TabsContent value="bureau">
-          <div>
-            <h2>Bureau</h2>
-            <p>This is the Bureau content.</p>
-          </div>
+          <BRETables
+            title={"Bureau Rules"}
+            subtitle="Get creditworthiness and repayment history"
+            navTo="bankStatement"
+            paramsArr={breConfigBureauParams}
+          />
         </TabsContent>
 
         <TabsContent value="bankStatement">
-          <div>
-            <h2>Bank Statement</h2>
-            <p>This is the Bank Statement content.</p>
-          </div>
+          <BRETables
+            title={"Bank Statement"}
+            subtitle="Get cash flow assessment & repayment ability"
+            navTo="kyc"
+            paramsArr={breConfigBankStatementParams}
+          />
         </TabsContent>
 
         <TabsContent value="kyc">
-          <div>
-            <h2>KYC</h2>
-            <p>This is the KYC content.</p>
-          </div>
+          <BRETables
+            title={"KYC"}
+            subtitle="Get Identity validation and fraud prevention"
+            navTo="income"
+            paramsArr={breConfigKycParams}
+          />
         </TabsContent>
 
         <TabsContent value="income">
-          <div>
-            <h2>Income</h2>
-            <p>This is the Income content.</p>
-          </div>
+          <BRETables
+            title={"Income"}
+            subtitle="Get Validate income consistency"
+            navTo="occupation"
+            paramsArr={breConfigIncomeParams}
+          />
         </TabsContent>
 
         <TabsContent value="occupation">
-          <div>
-            <h2>Occupation</h2>
-            <p>This is the Occupation content.</p>
-          </div>
+          <BRETables
+            title={"Occupation"}
+            subtitle="Understand stability and risk based on employment"
+            navTo="demographic"
+            paramsArr={breConfigOccupationParams}
+          />
         </TabsContent>
 
         <TabsContent value="demographic">
-          <div>
-            <h2>Demographic</h2>
-            <p>This is the Demographic content.</p>
-          </div>
+          <BRETables
+            title={"Demographic"}
+            subtitle="Understand stability and risk based on employment"
+            navTo=""
+            paramsArr={breConfigDemographicParams}
+          />
         </TabsContent>
       </Tabs>
     </div>

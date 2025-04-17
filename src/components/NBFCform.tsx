@@ -26,7 +26,7 @@ import { Input } from "@/components/ui/input";
 import CardHeader from "./CardHeader";
 import CardHeadline from "./CardHeadline";
 
-import { rbiLisenceTypes } from "@/constants";
+import { rbiLisenceTypes } from "@/lib/constants";
 
 const fileSchema = z
   .instanceof(File, { message: "File is required" })
@@ -35,7 +35,8 @@ const fileSchema = z
   })
   .refine((file) => file.type === "application/pdf", {
     message: "Only PDF files are accepted",
-  }).optional();
+  })
+  .optional();
 
 const formSchema = z.object({
   nbfcName: z.string().min(4, { message: "NBFC Name is required" }),
@@ -101,9 +102,7 @@ const formSchema = z.object({
   companyLogo: fileSchema,
 });
 
-
 const NBFCform = () => {
-
   const navigate = useNavigate();
 
   const form = useForm<z.infer<typeof formSchema>>({
