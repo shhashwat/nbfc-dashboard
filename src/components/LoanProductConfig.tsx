@@ -7,7 +7,7 @@ import {
   loanProductConfigTabs,
   loanProductConfigTabContent,
 } from "@/lib/constants";
-import { CheckCircle } from "lucide-react"; // Import CheckCircle icon
+import { CircleCheck } from "lucide-react";
 import { useTabStore } from "@/lib/store/useTabStore"; // Import Zustand store
 
 const LoanProductConfig = () => {
@@ -49,7 +49,7 @@ const LoanProductConfig = () => {
             <TabsTrigger className="bre-tabs" value={tab.key} key={tab.key}>
               <div className="flex items-center space-x-2">
                 {submittedTabs.includes(tab.key) && (
-                  <CheckCircle className="text-green-500 text-sm" />
+                  <CircleCheck className="text-green-500 text-sm" />
                 )}
                 <span>{tab.name}</span>
               </div>

@@ -5,7 +5,7 @@ import CardHeader from "./CardHeader";
 import BRETables from "./BRETables";
 import { breConfigTabs, breConfigTabContent } from "@/lib/constants";
 import { useTabStore } from "@/lib/store/useTabStore"; // Import Zustand store
-import { CheckCircle } from "lucide-react"; // Icon for submitted tabs
+import { CircleCheck } from "lucide-react"; // Icon for submitted tabs
 
 const BREConfig = () => {
   const location = useLocation();
@@ -47,7 +47,7 @@ const BREConfig = () => {
             <TabsTrigger className="bre-tabs" value={tab.value} key={tab.value}>
               <div className="flex items-center space-x-2">
                 {submittedTabs.includes(tab.value) && (
-                  <CheckCircle className="text-green-500 text-sm" />
+                  <CircleCheck className="text-green-500 text-sm" />
                 )}
                 <span>{tab.name}</span>
               </div>
