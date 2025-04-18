@@ -56,7 +56,7 @@ const LoanProductTables: React.FC<LoanProductTablesProps> = ({
     defaultValues: {
       mappings: paramsArr.map((param) => ({
         parameter: param.name,
-        value: param.dropdown ? "" : 0,
+        value: param.dropdown ? "" : undefined,
         mandatory: true || false,
       })),
     },

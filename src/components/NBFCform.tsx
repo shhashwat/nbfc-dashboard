@@ -27,6 +27,7 @@ import CardHeader from "./CardHeader";
 import CardHeadline from "./CardHeadline";
 
 import { rbiLisenceTypes } from "@/lib/constants";
+import { formatIndianNumber } from "@/lib/utils";
 
 const fileSchema = z.instanceof(File, { message: "File is required" })
     .refine((file) => file.size <= 5 * 1024 * 1024, {
@@ -56,9 +57,12 @@ const fileSchema = z.instanceof(File, { message: "File is required" })
 const formSchema = z.object({
   nbfcName: z.string().min(4, { message: "NBFC Name is required" }),
 
-  regNum: z.coerce
-    .number()
-    .min(1, { message: "Registration Number is required" }),
+  regNum: z
+    .string()
+    .min(1, { message: "Registration Number is required" })
+    .regex(/^[a-zA-Z0-9]+$/, {
+      message: "Registration Number must be alphanumeric",
+    }),
 
   rbiLicenseType: z.enum(
     [
@@ -173,7 +177,13 @@ const NBFCform = () => {
                   <FormItem className="mb-4">
                     <FormLabel>NBFC Name</FormLabel>
                     <FormControl>
-                      <Input placeholder="NBFC Name" {...field} />
+                      <Input
+                        placeholder="Enter NBFC Name"
+                        {...field}
+                        onChange={(e) =>
+                          field.onChange(e.target.value.toUpperCase())
+                        }
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -187,7 +197,13 @@ const NBFCform = () => {
                   <FormItem className="mb-4">
                     <FormLabel>Registration Number</FormLabel>
                     <FormControl>
-                      <Input placeholder="Registration Number" {...field} />
+                      <Input
+                        placeholder="Enter the Registration Number"
+                        {...field}
+                        onChange={(e) =>
+                          field.onChange(e.target.value.toUpperCase())
+                        }
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -202,7 +218,7 @@ const NBFCform = () => {
                     <FormLabel>RBI License Type</FormLabel>
                     <Select
                       onValueChange={field.onChange}
-                      defaultValue={field.value}
+                      // defaultValue={field.value}
                     >
                       <FormControl>
                         <SelectTrigger className="w-full">
@@ -229,36 +245,71 @@ const NBFCform = () => {
                   <FormItem className="mb-4">
                     <FormLabel>Date of Incorporation</FormLabel>
                     <FormControl>
-                      <Input
-                        type="date"
-                        placeholder="Date of Incorporation"
-                        value={
-                          field.value
-                            ? field.value.toISOString().split("T")[0]
-                            : ""
-                        }
-                        onChange={(e) =>
-                          field.onChange(new Date(e.target.value))
-                        }
-                      />
+                      <div className="relative">
+                        {!field.value && (
+                          <span className="bg-white w-50 absolute left-3 top-2 text-muted-foreground pointer-events-none text-sm">
+                            Enter Date of Incorporation
+                          </span>
+                        )}
+                        <Input
+                          type="date"
+                          max={new Date().toISOString().split("T")[0]}
+                          value={
+                            field.value instanceof Date &&
+                            !isNaN(field.value.getTime())
+                              ? field.value.toISOString().split("T")[0]
+                              : ""
+                          }
+                          onChange={(e) => {
+                            const val = e.target.value;
+                            field.onChange(val ? new Date(val) : null); // support clearing the date
+                          }}
+                          onFocus={(e) => e.currentTarget.showPicker?.()}
+                          ref={(input) => {
+                            if (input) {
+                              input.onclick = () => input.showPicker?.();
+                            }
+                          }}
+                        />
+                      </div>
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-
+              
               <FormField
                 control={form.control}
                 name="bussinessLimit"
-                render={({ field }) => (
-                  <FormItem className="mb-4">
-                    <FormLabel>Business Limit</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Business Limit" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
+                render={({ field }) => {
+                  return (
+                    <FormItem className="mb-4">
+                      <FormLabel>Business Limit</FormLabel>
+                      <FormControl>
+                        <div className="relative">
+                          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">
+                            ₹
+                          </span>
+                          <Input
+                            placeholder="Business Limit"
+                            inputMode="numeric"
+                            className="pl-7" // make room for ₹ symbol
+                            value={
+                              field.value
+                                ? formatIndianNumber(field.value.toString())
+                                : ""
+                            }
+                            onChange={(e) => {
+                              const raw = e.target.value.replace(/[^0-9]/g, "");
+                              field.onChange(raw);
+                            }}
+                          />
+                        </div>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  );
+                }}
               />
             </span>
           </div>
@@ -804,7 +855,9 @@ const NBFCform = () => {
                         <Button
                           type="button"
                           className={`rounded-sm bg-blue-500 hover:bg-blue-600 ${
-                            field.value?.name ? "text-gray-200 bg-gray-500" : "text-white"
+                            field.value?.name
+                              ? "text-gray-200 bg-gray-500"
+                              : "text-white"
                           }`}
                           disabled={!!field.value?.name}
                           onClick={() => fileRef.current?.click()}

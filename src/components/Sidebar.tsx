@@ -16,11 +16,11 @@ const Sidebar: React.FC = () => {
 
       {/* Navigation */}
       <nav>
-        <ul className="space-y-0">
+        <ul className="space-y-1">
           <li>
             <a
               href="#"
-              className="flex items-center px-4 py-2 text-gray-700 hover:bg-blue-100 hover:text-blue-600 rounded-full hover:font-bold"
+              className="flex items-center px-4 py-1 text-gray-700 hover:bg-blue-100 hover:text-blue-600 rounded-full hover:font-bold"
             >
               <img
                 src="/images/icons/overview_sidebar.svg"
@@ -33,7 +33,7 @@ const Sidebar: React.FC = () => {
           <li>
             <a
               href="#"
-              className="flex items-center px-4 py-2 bg-blue-100 text-blue-600 rounded-full font-bold"
+              className="flex items-center px-4 py-1 bg-blue-100 text-blue-600 rounded-full font-bold"
             >
               <img
                 src="/images/icons/nbfc_sidebar.svg"
@@ -46,7 +46,7 @@ const Sidebar: React.FC = () => {
           <li>
             <a
               href="#"
-              className="flex items-center px-4 py-2 text-gray-700 hover:bg-blue-100 hover:text-blue-600 rounded-full hover:font-bold"
+              className="flex items-center px-4 py-1 text-gray-700 hover:bg-blue-100 hover:text-blue-600 rounded-full hover:font-bold"
             >
               <img
                 src="/images/icons/app_list_sidebar.svg"
@@ -59,7 +59,7 @@ const Sidebar: React.FC = () => {
           <li>
             <a
               href="#"
-              className="flex items-center px-4 py-2 text-gray-700 hover:bg-blue-100 hover:text-blue-600 rounded-full hover:font-bold"
+              className="flex items-center px-4 py-1 text-gray-700 hover:bg-blue-100 hover:text-blue-600 rounded-full hover:font-bold"
             >
               <img
                 src="/images/icons/history_sidebar.svg"
@@ -72,7 +72,7 @@ const Sidebar: React.FC = () => {
           <li>
             <a
               href="#"
-              className="flex items-center px-4 py-2 text-gray-700 hover:bg-blue-100 hover:text-blue-600 rounded-full hover:font-bold"
+              className="flex items-center px-4 py-1 text-gray-700 hover:bg-blue-100 hover:text-blue-600 rounded-full hover:font-bold"
             >
               <img
                 src="/images/icons/manager_user_sidebar.svg"
@@ -85,7 +85,7 @@ const Sidebar: React.FC = () => {
           <li>
             <a
               href="#"
-              className="flex items-center px-4 py-2 text-gray-700 hover:bg-blue-100 hover:text-blue-600 rounded-full hover:font-bold"
+              className="flex items-center px-4 py-1 text-gray-700 hover:bg-blue-100 hover:text-blue-600 rounded-full hover:font-bold"
             >
               <img
                 src="/images/icons/reports_sidebar.svg"
