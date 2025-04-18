@@ -64,7 +64,7 @@ const formSchema = z.object({
       const weightage = headerRef.current?.getValue();
 
       console.log("Weightage:", weightage);
-      console.log(`${title} Form data submitted:`, data);
+      console.log(`BRE Config ${title} Form data submitted:`, data);
 
       {title !== "Demographic" ? navigate(`#${navTo}`) : navigate("/")}
     };
@@ -79,69 +79,71 @@ const formSchema = z.object({
           weightage={true}
         />
 
-        <div className="bg-white shadow-sm rounded-lg p-4 space-y-3 space-x-4 w-full mt-4 min-w-[67rem]">
+        <div className="space-y-3 space-x-4 w-full mt-4 min-w-[66rem]">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
-              <Table>
-                <TableHeader>
-                  <TableRow className="h-12">
-                    {breConfigTableHeaders.map((header) => (
-                      <TableHead key={header.key}>
-                        <div className="flex items-center space-x-2">
-                          {header.icon && <img src={header.icon} alt="" />}
-                          <span>{header.name}</span>
-                        </div>
-                      </TableHead>
-                    ))}
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {fields.map((field, index) => (
-                    <TableRow key={field.id} className="h-12">
-                      <TableCell className="w-[30%] flex flex-col">
-                        {paramsArr[index].name}
-                        <p className="text-xs text-gray-500">
-                          {paramsArr[index].subtitle}
-                        </p>
-                      </TableCell>
-                      <TableCell className="w-[30%]">
-                        <FormField
-                          control={form.control}
-                          name={`mappings.${index}.value`}
-                          render={({ field }) => (
-                            <Input type="number" placeholder="0" {...field} />
-                          )}
-                        />
-                      </TableCell>
-                      <TableCell className="w-[30%]">
-                        <FormField
-                          control={form.control}
-                          name={`mappings.${index}.weightage`}
-                          render={({ field }) => (
-                            <Input type="number" placeholder="0" {...field} />
-                          )}
-                        />
-                      </TableCell>
-                      <TableCell className="w-[10%]">
-                        <FormField
-                          control={form.control}
-                          name={`mappings.${index}.mandatory`}
-                          render={({ field }) => (
-                            <Switch
-                              checked={field.value}
-                              onCheckedChange={field.onChange}
-                            />
-                          )}
-                        />
-                      </TableCell>
+              <div className="bg-white shadow-sm rounded-lg p-4 ">
+                <Table>
+                  <TableHeader>
+                    <TableRow className="h-12">
+                      {breConfigTableHeaders.map((header) => (
+                        <TableHead key={header.key}>
+                          <div className="flex items-center space-x-2">
+                            {header.icon && <img src={header.icon} alt="" />}
+                            <span>{header.name}</span>
+                          </div>
+                        </TableHead>
+                      ))}
                     </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-              <div className="flex justify-end mt-4">
+                  </TableHeader>
+                  <TableBody>
+                    {fields.map((field, index) => (
+                      <TableRow key={field.id} className="h-12">
+                        <TableCell className="w-[30%] flex flex-col">
+                          {paramsArr[index].name}
+                          <p className="text-xs text-gray-500">
+                            {paramsArr[index].subtitle}
+                          </p>
+                        </TableCell>
+                        <TableCell className="w-[30%]">
+                          <FormField
+                            control={form.control}
+                            name={`mappings.${index}.value`}
+                            render={({ field }) => (
+                              <Input type="number" placeholder="0" {...field} />
+                            )}
+                          />
+                        </TableCell>
+                        <TableCell className="w-[30%]">
+                          <FormField
+                            control={form.control}
+                            name={`mappings.${index}.weightage`}
+                            render={({ field }) => (
+                              <Input type="number" placeholder="0" {...field} />
+                            )}
+                          />
+                        </TableCell>
+                        <TableCell className="w-[10%]">
+                          <FormField
+                            control={form.control}
+                            name={`mappings.${index}.mandatory`}
+                            render={({ field }) => (
+                              <Switch
+                                checked={field.value}
+                                onCheckedChange={field.onChange}
+                              />
+                            )}
+                          />
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
+              <div className="flex justify-end mt-4 mr-2">
                 <Button
                   type="submit"
-                  className="bg-blue-600 hover:bg-blue-700 text-white"
+                  className="text-lg p-4 bg-blue-600 hover:bg-blue-700 text-white"
                 >
                   Submit
                 </Button>

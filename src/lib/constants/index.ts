@@ -1,3 +1,5 @@
+//SELECT DROPDOWNS
+
 export const rbiLisenceTypes = [
   {
     type: "Investment and Credit Company (ICC)",
@@ -49,6 +51,8 @@ export const rbiLisenceTypes = [
   },
 ];
 
+// DISBURSEMENT
+
 export const DisbursementFileTags = [
     {name: "Customer_Name", value: "customerName"},
     {name: "Borrower_Name", value: "borrowerName"},
@@ -69,6 +73,8 @@ export const DisbursementFileInferTableHeaders = [
   { name: "Expected Column Name (from NBFC file)", key: "ec" },
   { name: "Required", key: "r" },
 ];
+
+//BRE
 
 export const breConfigTabs = [
   { name: "1. Bureau", value: "bureau" },
@@ -101,6 +107,7 @@ export const breConfigTableHeaders = [
   },
 ];
 
+//bre params
 export const breConfigBureauParams = [
   {
     name: "Credit Score",
@@ -229,6 +236,7 @@ export const breConfigDemographicParams = [
   },
 ];
 
+//bre - tab content (ALL TABS)
 export const breConfigTabContent = [
   {
     value: "bureau",
@@ -271,5 +279,170 @@ export const breConfigTabContent = [
     subtitle: "Understand stability and risk based on employment",
     navTo: "",
     paramsArr: breConfigDemographicParams,
+  },
+];
+
+//LOAN PRODUCT CONFIG
+
+export const loanProductConfigTabs = [
+  { name: "1. Product Info", key: "productInfo" },
+  { name: "2. Loan Amount & Tenure", key: "loanAmountAndTenure" },
+  { name: "3. Charges & Fees", key: "chargesAndFees" },
+  { name: "4. Repayment & Schedule", key: "repaymentAndSchedule" },
+  { name: "5. Collateral & Risk Controls", key: "collateralAndRiskControls" }
+];
+
+export const loanProductConfigTableHeaders = [
+  {
+    name: "Parameter",
+    key: "parameter",
+    icon: "/images/icons/bre_config_th_icon.svg",
+  },
+  {
+    name: "Value",
+    key: "value",
+    icon: "/images/icons/bre_config_th_icon.svg",
+  },
+  {
+    name: "Mandatory",
+    key: "mandatory",
+  },
+];
+
+export const loanProductConfigProductInfoParams = [
+  {
+    name: "Loan Type",
+    key: "loanType",
+    subtitle: "Select the type of loan being configured",
+  },
+  {
+    name: "Loan Category / Purpose",
+    key: "loanCategory",
+    subtitle: "Specify the purpose for which the loan is offered",
+  },
+];
+
+export const loanProductConfigLoanAmountParams = [
+  {
+    name: "Max Disbursement Cap",
+    key: "maxDisbursementCap",
+    subtitle: "Disbursement limit for this loan product",
+  },
+  {
+    name: "Min Loan Amount",
+    key: "minLoanAmount",
+    subtitle: "Lowest amount that can be disbursed",
+  },
+  {
+    name: "Max Loan Amount",
+    key: "maxLoanAmount",
+    subtitle: "Loan exposure allowed per customer across products",
+  },
+  {
+    name: "Min Tenure",
+    key: "minTenure",
+    subtitle: "Shortest allowable repayment period in Months",
+  },
+  {
+    name: "Max Tenure",
+    key: "maxTenure",
+    subtitle: "Longest allowable repayment period",
+  },
+];
+
+export const loanProductConfigChargesParams = [
+  {
+    name: "Rate of Interest (ROI)",
+    key: "roi",
+    subtitle: "Annual interest rate applicable",
+  },
+  {
+    name: "Processing Fee",
+    key: "processingFee",
+    subtitle: "Fixed one-time loan setup fee",
+  },
+  {
+    name: "Service Fee",
+    key: "serviceFee",
+    subtitle: "Additional service charge on the loan",
+  },
+  {
+    name: "GST on Service Fee ",
+    key: "gstOnServiceFee",
+    subtitle: "GST percentage applicable on the service fee",
+  },
+];
+
+export const loanProductConfigRepaymentParams = [
+  {
+    name: "Repayment Schedule Type",
+    key: "repaymentScheduleType",
+    subtitle: "Repayment structure (e.g., EMI, Bullet)",
+  },
+  {
+    name: "EMI Frequency / Cycle",
+    key: "emiFrequency",
+    subtitle: "Select how often repayments will be made",
+  },
+  {
+    name: "Moratorium Period",
+    key: "moratoriumPeriod",
+    subtitle: "Grace period before repayment starts (if applicable)",
+  }
+];
+
+export const loanProductConfigCollateralParams = [
+  {
+    name: "Gold Purity %",
+    key: "goldPurity",
+    subtitle: "Set minimum acceptable purity for pledged gold",
+  },
+  {
+    name: "Loan-to-Value (LTV) %",
+    key: "ltvPercentage",
+    subtitle: "Minimum experience in months ",
+  },
+  {
+    name: "Collateral Type Required?",
+    key: "collateralTypeRequired",
+    subtitle: "Indicate if the loan requires any form of security",
+  },
+];
+
+export const loanProductConfigTabContent = [
+  {
+    value: "productInfo",
+    title: "Product Info",
+    subtitle: "Get creditworthiness and repayment history",
+    navTo: "loanAmountAndTenure",
+    paramsArr: loanProductConfigProductInfoParams,
+  },
+  {
+    value: "loanAmountAndTenure",
+    title: "Loan Amount & Tenure",
+    subtitle: "Get cash flow assessment & repayment ability.",
+    navTo: "chargesAndFees",
+    paramsArr: loanProductConfigLoanAmountParams,
+  },
+  {
+    value: "chargesAndFees",
+    title: "Charges & Fees",
+    subtitle: "Get Identity validation and fraud prevention.",
+    navTo: "repaymentAndSchedule",
+    paramsArr: loanProductConfigChargesParams,
+  },
+  {
+    value: "repaymentAndSchedule",
+    title: "Repayment & Schedule",
+    subtitle: "Get Validate income consistency.",
+    navTo: "collateralAndRiskControls",
+    paramsArr: loanProductConfigRepaymentParams,
+  },
+  {
+    value: "collateralAndRiskControls",
+    title: "Collateral & Risk Controls",
+    subtitle: "Understand stability and risk based on employment",
+    navTo: "/",
+    paramsArr: loanProductConfigCollateralParams,
   },
 ];

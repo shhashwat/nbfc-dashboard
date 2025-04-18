@@ -49,7 +49,12 @@ const DisbursementFileUpload = () => {
         subtitle="Upload your disbursement files here."
       />
 
-      <div className="bg-white shadow-sm rounded-lg p-5 space-y-3 space-x-4">
+      <Form {...form}>
+        <form
+          id="nbfc-form"
+          className="space-y-4"
+          onSubmit={form.handleSubmit(onSubmit)}>
+      <div className="bg-white shadow-sm rounded-lg p-4 space-y-3 space-x-4">
         <div className="flex items-center justify-between">
           <CardHeadline title="Upload Disbursement File" hr="no" />
 
@@ -65,13 +70,7 @@ const DisbursementFileUpload = () => {
 
         <hr />
 
-        {/* Wrap all form components within the Form provider */}
-        <Form {...form}>
-          <form
-            id="nbfc-form"
-            className="space-y-4"
-            onSubmit={form.handleSubmit(onSubmit)}
-          >
+            {/* Wrap all form components within the Form provider */}
             <span className="flex flex-col items-center justify-center p-10">
               <img
                 src="/images/icons/file_open.svg" // adjust filename as needed
@@ -153,9 +152,10 @@ const DisbursementFileUpload = () => {
                 </Label>
               </div>
             </span>
-            <span className="flex justify-center items-center space-x-2 -mt-8">
+            </div>
+            <span className="flex justify-end items-center space-x-2 mr-8">
                 <Button
-                    className="rounded-sm bg-blue-500 hover:bg-blue-600 text-white"
+                    className="text-lg p-5 rounded-sm bg-blue-500 hover:bg-blue-600 text-white"
                     type="submit"
                 >
                     Next
@@ -164,7 +164,6 @@ const DisbursementFileUpload = () => {
           </form>
         </Form>
       </div>
-    </div>
   );
 };
 

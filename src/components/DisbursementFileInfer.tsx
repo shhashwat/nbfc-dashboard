@@ -113,35 +113,34 @@ const DisbursementFileInfer = () => {
         title="Disbursement File Upload"
         subtitle="Upload your disbursement files here."
       />
-      <div className="bg-white shadow-sm rounded-lg p-4 space-y-3 space-x-4">
-        <div className="flex items-center justify-between -mt-3">
-          <CardHeadline
-            title="Upload Disbursement File"
-            hr="no"
-            className="text-sm mt-3 ml-2"
-          />
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+          <div className="bg-white shadow-sm rounded-lg p-4 space-y-3 space-x-4">
+            <div className="flex items-center justify-between -mt-3">
+              <CardHeadline
+                title="Upload Disbursement File"
+                hr="no"
+                className="text-sm mt-3 ml-2"
+              />
 
-          <Button
-            type="button"
-            variant="outline"
-            className="scale-90 rounded-sm bg-white text-blue-600 border-blue-500 hover:bg-blue-50"
-          >
-            Export Sample File
-            <ChevronDown />
-          </Button>
-        </div>
+              <Button
+                type="button"
+                variant="outline"
+                className="scale-90 rounded-sm bg-white text-blue-600 border-blue-500 hover:bg-blue-50"
+              >
+                Export Sample File
+                <ChevronDown />
+              </Button>
+            </div>
 
-        <hr />
+            <hr />
 
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)}>
             <Table>
               <TableHeader>
                 <TableRow>
                   {DisbursementFileInferTableHeaders.map((tab) => (
-                    <TableHead key={tab.key}>
-                      {tab.name}
-                    </TableHead>))}
+                    <TableHead key={tab.key}>{tab.name}</TableHead>
+                  ))}
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -187,18 +186,18 @@ const DisbursementFileInfer = () => {
                 ))}
               </TableBody>
             </Table>
+          </div>
 
-            <div className="flex justify-end mt-4">
-              <Button
-                type="submit"
-                className="bg-blue-600 hover:bg-blue-700 text-white"
-              >
-                Submit
-              </Button>
-            </div>
-          </form>
-        </Form>
-      </div>
+          <div className="flex justify-end mt-4 mr-7">
+            <Button
+              type="submit"
+              className="text-lg p-5 bg-blue-600 hover:bg-blue-700 text-white"
+            >
+              Submit
+            </Button>
+          </div>
+        </form>
+      </Form>
     </div>
   );
 };

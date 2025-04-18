@@ -7,60 +7,83 @@ import NBFCform from './components/NBFCform';
 import DisbursementFileUpload from './components/DisbursementFileUpload';
 import DisbursementFileInfer from './components/DisbursementFileInfer';
 import BREConfig from './components/BREConfig';
+import LoanProductConfig from './components/LoanProductConfig';
 
 function App() {
 
   return (
     <>
-    {/* ONBOARDING */}
-    <Routes>
-      <Route
-      path="/"
-      element={
-      <Layout >
-        <OnboardingPage />
-      </Layout>}/>
-      
-      {/* SEGMENT SELECTION */}
-      <Route
-      path='/nbfc/2'
-      element={
-      <Layout >
-        <SegmentSelection />
-      </Layout>}/>
+      {/* ONBOARDING */}
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Layout>
+              <OnboardingPage />
+            </Layout>
+          }
+        />
 
-      {/* NBFC FORM */}
-      <Route
-      path='/nbfc/3'
-      element={
-      <Layout >
-        <NBFCform />
-      </Layout>}/>
+        {/* SEGMENT SELECTION */}
+        <Route
+          path="/nbfc/2"
+          element={
+            <Layout>
+              <SegmentSelection />
+            </Layout>
+          }
+        />
 
-      {/* DISBURSEMENT FILE UPLOAD */}
-      <Route
-      path='/nbfc/4'
-      element={
-      <Layout >
-        <DisbursementFileUpload />
-      </Layout>}/>
+        {/* NBFC FORM */}
+        <Route
+          path="/nbfc/3"
+          element={
+            <Layout>
+              <NBFCform />
+            </Layout>
+          }
+        />
 
-      {/* DISBURSEMENT FILE INFER */}
-      <Route
-      path='/nbfc/5'
-      element={
-      <Layout >
-        <DisbursementFileInfer />
-      </Layout>}/>
+        {/* LOAN PRODUCT CONFIG */}
+        <Route
+          path="/nbfc/product-config"
+          element={
+            <Layout>
+              <LoanProductConfig />
+            </Layout>
+          }
+        />
 
-      {/* BRE CONFIG */}
-      <Route
-      path='/nbfc/6'
-      element={
-      <Layout >
-        <BREConfig />
-      </Layout>}/>
-    </Routes>
+        {/* DISBURSEMENT FILE UPLOAD */}
+        <Route
+          path="/nbfc/4"
+          element={
+            <Layout>
+              <DisbursementFileUpload />
+            </Layout>
+          }
+        />
+
+        {/* DISBURSEMENT FILE INFER */}
+        <Route
+          path="/nbfc/5"
+          element={
+            <Layout>
+              <DisbursementFileInfer />
+            </Layout>
+          }
+        />
+
+        {/* BRE CONFIG */}
+        <Route
+          path="/nbfc/6"
+          element={
+            <Layout>
+              <BREConfig />
+            </Layout>
+          }
+        />
+      </Routes>
     </>
   );
 }

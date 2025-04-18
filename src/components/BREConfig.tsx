@@ -12,12 +12,6 @@ import { ChevronLeft } from "lucide-react";
 
 import {
   breConfigTabs,
-  breConfigBureauParams,
-  breConfigBankStatementParams,
-  breConfigKycParams,
-  breConfigIncomeParams,
-  breConfigOccupationParams,
-  breConfigDemographicParams,
   breConfigTabContent,
 } from "@/lib/constants";
 
@@ -57,7 +51,7 @@ const handleTabChange = (tab: string) => {
           ))}
 
           <Button
-            className="ml-60 text-[#1678F5] hover:text-[#016FF4] hover:bg-blend-soft-light underline"
+            className="ml-50 text-[#1678F5] hover:text-[#016FF4] hover:bg-blend-soft-light underline"
             variant="ghost"
           >
             <i>

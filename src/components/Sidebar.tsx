@@ -16,7 +16,7 @@ const Sidebar: React.FC = () => {
 
       {/* Navigation */}
       <nav>
-        <ul className="space-y-4">
+        <ul className="space-y-0">
           <li>
             <a
               href="#"

@@ -131,7 +131,7 @@ const NBFCform = () => {
   const onSubmit: SubmitHandler<z.infer<typeof formSchema>> = (data) => {
     console.log("Form submitted with data:", data);
     // Add your processing logic here (e.g., API calls to save data).
-    navigate("/nbfc/4");
+    navigate("/nbfc/product-config");
   };
 
   return (
