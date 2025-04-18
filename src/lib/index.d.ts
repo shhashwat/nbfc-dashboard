@@ -14,6 +14,7 @@ declare interface BRETablesProps {
   subtitle: string;
   navTo: string;
   paramsArr: any[];
+  onSubmit?: () => void;
 }
 
 declare interface LoanProductTablesProps {
@@ -21,4 +22,10 @@ declare interface LoanProductTablesProps {
   subtitle: string;
   navTo: string;
   paramsArr: any[];
+  onSubmit?: () => void;
+}
+
+declare interface TabStore {
+  submittedTabs: string[];
+  markTabAsSubmitted: (tab: string) => void;
 }

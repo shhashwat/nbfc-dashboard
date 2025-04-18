@@ -170,7 +170,7 @@ const DisbursementFileInfer = () => {
                         )}
                       />
                     </TableCell>
-                    <TableCell>
+                    <TableCell className="grid place-items-center mr-10">
                       <FormField
                         control={form.control}
                         name={`mappings.${index}.required`}

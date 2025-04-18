@@ -45,6 +45,7 @@ const LoanProductTables: React.FC<LoanProductTablesProps> = ({
   subtitle,
   navTo,
   paramsArr,
+  onSubmit, // Receive onSubmit callback
 }) => {
   const navigate = useNavigate();
 
@@ -64,14 +65,18 @@ const LoanProductTables: React.FC<LoanProductTablesProps> = ({
     name: "mappings",
   });
 
-  const onSubmit = (data: z.infer<typeof formSchema>) => {
+  const onFormSubmit = (data: z.infer<typeof formSchema>) => {
     console.log(`Loan Product ${title} Form data submitted:`, data);
 
-    {
-      title !== "Collateral & Risk Controls"
-        ? navigate(`#${navTo}`)
-        : navigate("/nbfc/bre-config");
+    // Call the onSubmit callback passed from LoanProductConfig to mark the tab as submitted
+    if (onSubmit) {
+      onSubmit();
     }
+
+    // Navigate to next tab or page
+    title !== "Collateral & Risk Controls"
+      ? navigate(`#${navTo}`)
+      : navigate("/nbfc/bre-config");
   };
 
   return (
@@ -80,7 +85,7 @@ const LoanProductTables: React.FC<LoanProductTablesProps> = ({
 
       <div className="space-y-3 space-x-4 w-full mt-4 min-w-[67rem]">
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)}>
+          <form onSubmit={form.handleSubmit(onFormSubmit)}>
             <div className="bg-white shadow-sm p-3 rounded-lg">
               <Table>
                 <TableHeader>
@@ -150,7 +155,7 @@ const LoanProductTables: React.FC<LoanProductTablesProps> = ({
                       </TableCell>
 
                       {title !== "Product Info" && (
-                        <TableCell className="w-[20%]">
+                        <TableCell className="flex justify-center items-center">
                           <FormField
                             control={form.control}
                             name={`mappings.${index}.mandatory`}

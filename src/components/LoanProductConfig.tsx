@@ -1,16 +1,14 @@
 import { useEffect, useState } from "react";
-
 import { useLocation, useNavigate } from "react-router-dom";
-
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Button } from "@/components/ui/button";
 import CardHeader from "./CardHeader";
-
 import LoanProductTables from "./LoanProductTables";
-
-import { ChevronLeft } from "lucide-react";
-
-import { loanProductConfigTabs, loanProductConfigTabContent } from "@/lib/constants";
+import {
+  loanProductConfigTabs,
+  loanProductConfigTabContent,
+} from "@/lib/constants";
+import { CheckCircle } from "lucide-react"; // Import CheckCircle icon
+import { useTabStore } from "@/lib/store/useTabStore"; // Import Zustand store
 
 const LoanProductConfig = () => {
   const location = useLocation();
@@ -19,6 +17,9 @@ const LoanProductConfig = () => {
   // Extract tab from hash (without the `#`)
   const currentHash = location.hash.replace("#", "") || "productInfo";
   const [activeTab, setActiveTab] = useState(currentHash);
+
+  // Get and update submittedTabs from Zustand store
+  const { submittedTabs, markTabAsSubmitted } = useTabStore();
 
   // Sync active tab with hash
   useEffect(() => {
@@ -31,10 +32,13 @@ const LoanProductConfig = () => {
     navigate(`#${tab}`); // update URL hash
   };
 
+  const handleFormSubmit = (tab: string) => {
+    markTabAsSubmitted(tab); // Mark tab as submitted
+  };
+
   return (
     <div className="flex flex-col space-y-4 p-5">
       <CardHeader title="Loan Product Configuration" />
-
       <Tabs
         value={activeTab}
         onValueChange={handleTabChange}
@@ -43,19 +47,14 @@ const LoanProductConfig = () => {
         <TabsList className="w-[67rem]">
           {loanProductConfigTabs.map((tab) => (
             <TabsTrigger className="bre-tabs" value={tab.key} key={tab.key}>
-              {tab.name}
+              <div className="flex items-center space-x-2">
+                {submittedTabs.includes(tab.key) && (
+                  <CheckCircle className="text-green-500 text-sm" />
+                )}
+                <span>{tab.name}</span>
+              </div>
             </TabsTrigger>
           ))}
-
-          <Button
-            className="ml-33 text-[#1678F5] hover:text-[#016FF4] hover:bg-blend-soft-light underline"
-            variant="ghost"
-          >
-            <i>
-              <ChevronLeft />
-            </i>
-            Exit
-          </Button>
         </TabsList>
         {loanProductConfigTabContent.map((tab) => (
           <TabsContent key={tab.value} value={tab.value}>
@@ -64,6 +63,7 @@ const LoanProductConfig = () => {
               subtitle={tab.subtitle}
               navTo={tab.navTo}
               paramsArr={tab.paramsArr}
+              onSubmit={() => handleFormSubmit(tab.value)} // Pass the submission callback
             />
           </TabsContent>
         ))}

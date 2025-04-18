@@ -378,10 +378,15 @@ const NBFCform = () => {
                         {/* Upload Button */}
                         <Button
                           type="button"
-                          className="rounded-sm bg-blue-500 hover:bg-blue-600 text-white"
+                          className={`rounded-sm bg-blue-500 hover:bg-blue-600 ${
+                            field.value?.name
+                              ? "text-gray-200 bg-gray-500"
+                              : "text-white"
+                          }`}
+                          disabled={!!field.value?.name}
                           onClick={() => fileRef.current?.click()}
                         >
-                          {field.value?.name || "Upload"}
+                          {field.value?.name ? "Uploaded" : "Upload"}
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="ml-2 h-4 w-4"
@@ -455,10 +460,15 @@ const NBFCform = () => {
                         {/* Upload Button */}
                         <Button
                           type="button"
-                          className="rounded-sm bg-blue-500 hover:bg-blue-600 text-white"
+                          className={`rounded-sm bg-blue-500 hover:bg-blue-600 ${
+                            field.value?.name
+                              ? "text-gray-200 bg-gray-500"
+                              : "text-white"
+                          }`}
+                          disabled={!!field.value?.name}
                           onClick={() => fileRef.current?.click()}
                         >
-                          {field.value?.name || "Upload"}
+                          {field.value?.name ? "Uploaded" : "Upload"}
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="ml-2 h-4 w-4"
@@ -532,10 +542,15 @@ const NBFCform = () => {
                         {/* Upload Button */}
                         <Button
                           type="button"
-                          className="rounded-sm bg-blue-500 hover:bg-blue-600 text-white"
+                          className={`rounded-sm bg-blue-500 hover:bg-blue-600 ${
+                            field.value?.name
+                              ? "text-gray-200 bg-gray-500"
+                              : "text-white"
+                          }`}
+                          disabled={!!field.value?.name}
                           onClick={() => fileRef.current?.click()}
                         >
-                          {field.value?.name || "Upload"}
+                          {field.value?.name ? "Uploaded" : "Upload"}
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="ml-2 h-4 w-4"
@@ -609,10 +624,15 @@ const NBFCform = () => {
                         {/* Upload Button */}
                         <Button
                           type="button"
-                          className="rounded-sm bg-blue-500 hover:bg-blue-600 text-white"
+                          className={`rounded-sm bg-blue-500 hover:bg-blue-600 ${
+                            field.value?.name
+                              ? "text-gray-200 bg-gray-500"
+                              : "text-white"
+                          }`}
+                          disabled={!!field.value?.name}
                           onClick={() => fileRef.current?.click()}
                         >
-                          {field.value?.name || "Upload"}
+                          {field.value?.name ? "Uploaded" : "Upload"}
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="ml-2 h-4 w-4"
@@ -686,10 +706,15 @@ const NBFCform = () => {
                         {/* Upload Button */}
                         <Button
                           type="button"
-                          className="rounded-sm bg-blue-500 hover:bg-blue-600 text-white"
+                          className={`rounded-sm bg-blue-500 hover:bg-blue-600 ${
+                            field.value?.name
+                              ? "text-gray-200 bg-gray-500"
+                              : "text-white"
+                          }`}
+                          disabled={!!field.value?.name}
                           onClick={() => fileRef.current?.click()}
                         >
-                          {field.value?.name || "Upload"}
+                          {field.value?.name ? "Uploaded" : "Upload"}
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="ml-2 h-4 w-4"
@@ -763,10 +788,13 @@ const NBFCform = () => {
                         {/* Upload Button */}
                         <Button
                           type="button"
-                          className="rounded-sm bg-blue-500 hover:bg-blue-600 text-white"
+                          className={`rounded-sm bg-blue-500 hover:bg-blue-600 ${
+                            field.value?.name ? "text-gray-200 bg-gray-500" : "text-white"
+                          }`}
+                          disabled={!!field.value?.name}
                           onClick={() => fileRef.current?.click()}
                         >
-                          {field.value?.name || "Upload"}
+                          {field.value?.name ? "Uploaded" : "Upload"}
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="ml-2 h-4 w-4"
