@@ -26,7 +26,7 @@ function App() {
 
         {/* SEGMENT SELECTION */}
         <Route
-          path="/nbfc/2"
+          path="/nbfc/segment-selection"
           element={
             <Layout>
               <SegmentSelection />
@@ -36,10 +36,30 @@ function App() {
 
         {/* NBFC FORM */}
         <Route
-          path="/nbfc/3"
+          path="/nbfc/nbfc-form"
           element={
             <Layout>
               <NBFCform />
+            </Layout>
+          }
+        />
+
+        {/* DISBURSEMENT FILE UPLOAD */}
+        <Route
+          path="/nbfc/disbursement-file-upload"
+          element={
+            <Layout>
+              <DisbursementFileUpload />
+            </Layout>
+          }
+        />
+
+        {/* DISBURSEMENT FILE INFER */}
+        <Route
+          path="/nbfc/disbursement-file-infer"
+          element={
+            <Layout>
+              <DisbursementFileInfer />
             </Layout>
           }
         />
@@ -54,29 +74,9 @@ function App() {
           }
         />
 
-        {/* DISBURSEMENT FILE UPLOAD */}
-        <Route
-          path="/nbfc/4"
-          element={
-            <Layout>
-              <DisbursementFileUpload />
-            </Layout>
-          }
-        />
-
-        {/* DISBURSEMENT FILE INFER */}
-        <Route
-          path="/nbfc/5"
-          element={
-            <Layout>
-              <DisbursementFileInfer />
-            </Layout>
-          }
-        />
-
         {/* BRE CONFIG */}
         <Route
-          path="/nbfc/6"
+          path="/nbfc/bre-config"
           element={
             <Layout>
               <BREConfig />

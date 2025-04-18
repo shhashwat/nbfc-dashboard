@@ -21,7 +21,7 @@ const SegmentSelection = () => {
             journey
           </p>
           <CardContent className="grid grid-cols-2 gap-4 mt-4">
-            <Link to={"/nbfc/3"}>
+            <Link to={"/nbfc/nbfc-form"}>
               <SegmentsCard
                 imgSrc="/images/co-lending_segment.svg"
                 imgAlt="Co-Lending Segment"
@@ -30,7 +30,7 @@ const SegmentSelection = () => {
               />
             </Link>
 
-            <Link to={'/nbfc/3'}>
+            <Link to={'/nbfc/nbfc-form'}>
               <SegmentsCard
                 imgSrc="/images/pool_buyout_segment.svg"
                 imgAlt="Pool Buyout Segment"

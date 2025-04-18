@@ -104,7 +104,7 @@ const DisbursementFileInfer = () => {
   function onSubmit(data: z.infer<typeof formSchema>) {
     console.log("Form data submitted:", data);
 
-    navigate("/nbfc/6");
+    navigate("/nbfc/product-config");
   }
 
   return (

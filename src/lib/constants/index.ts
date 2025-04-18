@@ -51,6 +51,99 @@ export const rbiLisenceTypes = [
   },
 ];
 
+export const lpconfigLoanTypes = [
+  { label: "Gold Loan", value: "Gold Loan" },
+  { label: "Personal Loan", value: "Personal Loan" },
+  { label: "Business Loan", value: "Business Loan" },
+  { label: "Two-Wheeler Loan", value: "Two-Wheeler Loan" },
+  { label: "Used Car Loan", value: "Used Car Loan" },
+  { label: "New Car Loan", value: "New Car Loan" },
+  { label: "Loan Against Property (LAP)", value: "Loan Against Property" },
+  { label: "Home Loan", value: "Home Loan" },
+  { label: "Education Loan", value: "Education Loan" },
+  { label: "Consumer Durable Loan", value: "Consumer Durable Loan" },
+  { label: "Agricultural Loan", value: "Agricultural Loan" },
+  { label: "SME/MSME Loan", value: "SME/MSME Loan" },
+  { label: "Microfinance Loan", value: "Microfinance Loan" },
+  {
+    label: "Construction Equipment Loan",
+    value: "Construction Equipment Loan",
+  },
+  { label: "Commercial Vehicle Loan", value: "Commercial Vehicle Loan" },
+  { label: "Working Capital Loan", value: "Working Capital Loan" },
+  { label: "Invoice Financing", value: "Invoice Financing" },
+  { label: "Loan Against Securities", value: "Loan Against Securities" },
+  { label: "Top-Up Loan", value: "Top-Up Loan" },
+  { label: "Balance Transfer Loan", value: "Balance Transfer Loan" },
+];
+
+export const lpconfigLoanPurposes = [
+  { label: "Education", value: "Education" },
+  { label: "Home Renovation", value: "Home Renovation" },
+  { label: "Business Expansion", value: "Business Expansion" },
+  { label: "Working Capital", value: "Working Capital" },
+  { label: "Debt Consolidation", value: "Debt Consolidation" },
+  { label: "Medical Expenses", value: "Medical Expenses" },
+  { label: "Wedding", value: "Wedding" },
+  { label: "Travel", value: "Travel" },
+  { label: "Vehicle Purchase", value: "Vehicle Purchase" },
+  { label: "Purchase of Machinery", value: "Purchase of Machinery" },
+  { label: "Construction of House", value: "Construction of House" },
+  { label: "Purchase of Land", value: "Purchase of Land" },
+  {
+    label: "Purchase of Commercial Property",
+    value: "Purchase of Commercial Property",
+  },
+  { label: "Agricultural Activities", value: "Agricultural Activities" },
+  { label: "Emergency Fund", value: "Emergency Fund" },
+  { label: "Loan Against Deposit", value: "Loan Against Deposit" },
+  { label: "House Purchase", value: "House Purchase" },
+  { label: "Equipment Financing", value: "Equipment Financing" },
+  { label: "Export/Import Financing", value: "Export/Import Financing" },
+  { label: "Student Loan (Overseas)", value: "Student Loan (Overseas)" },
+];
+
+export const lpConfigRepaymentScheduleTypes = [
+  { label: "EMI", value: "EMI" },
+  { label: "Bullet", value: "Bullet" },
+  { label: "Lump Sum", value: "Lump Sum" },
+  { label: "Step-Up", value: "Step-Up" },
+  { label: "Step-Down", value: "Step-Down" },
+  { label: "Interest Only", value: "Interest Only" },
+  { label: "Custom", value: "Custom" },
+];
+
+export const lpConfigEmiFrequencies = [
+  { label: "Monthly", value: "Monthly" },
+  { label: "Bi-Monthly", value: "Bi-Monthly" },
+  { label: "Quarterly", value: "Quarterly" },
+  { label: "Half-Yearly", value: "Half-Yearly" },
+  { label: "Annually", value: "Annually" },
+  { label: "Weekly", value: "Weekly" },
+  { label: "Daily", value: "Daily" },
+];
+
+export const lpConfigGoldPurityOptions = [
+  { label: "75% 18K", value: "75% 18K" },
+  { label: "80% 22K", value: "80% 22K" },
+  { label: "85% 24K", value: "85% 24K" },
+  { label: "90% 22K", value: "90% 22K" },
+  { label: "95% 24K", value: "95% 24K" },
+  { label: "100% 24K", value: "100% 24K" },
+];
+
+export const lpConfigCollateralTypes = [
+  { label: "Gold", value: "Gold" },
+  { label: "Property", value: "Property" },
+  { label: "Vehicle", value: "Vehicle" },
+  { label: "Securities", value: "Securities" },
+  { label: "Cash", value: "Cash" },
+  { label: "Inventory", value: "Inventory" },
+  { label: "Other", value: "Other" },
+];
+
+
+
 // DISBURSEMENT
 
 export const DisbursementFileTags = [
@@ -314,11 +407,13 @@ export const loanProductConfigProductInfoParams = [
     name: "Loan Type",
     key: "loanType",
     subtitle: "Select the type of loan being configured",
+    dropdown: lpconfigLoanTypes,
   },
   {
     name: "Loan Category / Purpose",
     key: "loanCategory",
     subtitle: "Specify the purpose for which the loan is offered",
+    dropdown: lpconfigLoanPurposes,
   },
 ];
 
@@ -378,11 +473,13 @@ export const loanProductConfigRepaymentParams = [
     name: "Repayment Schedule Type",
     key: "repaymentScheduleType",
     subtitle: "Repayment structure (e.g., EMI, Bullet)",
+    dropdown: lpConfigRepaymentScheduleTypes,
   },
   {
     name: "EMI Frequency / Cycle",
     key: "emiFrequency",
     subtitle: "Select how often repayments will be made",
+    dropdown: lpConfigEmiFrequencies,
   },
   {
     name: "Moratorium Period",
@@ -396,6 +493,7 @@ export const loanProductConfigCollateralParams = [
     name: "Gold Purity %",
     key: "goldPurity",
     subtitle: "Set minimum acceptable purity for pledged gold",
+    dropdown: lpConfigGoldPurityOptions,
   },
   {
     name: "Loan-to-Value (LTV) %",
@@ -406,9 +504,12 @@ export const loanProductConfigCollateralParams = [
     name: "Collateral Type Required?",
     key: "collateralTypeRequired",
     subtitle: "Indicate if the loan requires any form of security",
+    dropdown: lpConfigCollateralTypes,
   },
 ];
 
+
+//loan product - tab content (ALL TABS)
 export const loanProductConfigTabContent = [
   {
     value: "productInfo",

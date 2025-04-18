@@ -11,6 +11,13 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { Input } from "@/components/ui/input";
@@ -22,7 +29,10 @@ import { loanProductConfigTableHeaders } from "@/lib/constants";
 
 const rowSchema = z.object({
   parameter: z.string(),
-  value: z.coerce.number().min(0, { message: "This field is required" }),
+  value: z.union([
+    z.string(),
+    z.coerce.number().min(0, { message: "This field is required" }),
+  ]),
   mandatory: z.boolean(),
 });
 
@@ -30,7 +40,7 @@ const formSchema = z.object({
   mappings: z.array(rowSchema),
 });
 
-const LoanProductTables: React.FC<BRETablesProps> = ({
+const LoanProductTables: React.FC<LoanProductTablesProps> = ({
   title,
   subtitle,
   navTo,
@@ -43,7 +53,7 @@ const LoanProductTables: React.FC<BRETablesProps> = ({
     defaultValues: {
       mappings: paramsArr.map((param) => ({
         parameter: param.name,
-        value: 0,
+        value: param.dropdown ? "" : 0,
         mandatory: true || false,
       })),
     },
@@ -55,13 +65,12 @@ const LoanProductTables: React.FC<BRETablesProps> = ({
   });
 
   const onSubmit = (data: z.infer<typeof formSchema>) => {
-
     console.log(`Loan Product ${title} Form data submitted:`, data);
 
     {
       title !== "Collateral & Risk Controls"
         ? navigate(`#${navTo}`)
-        : navigate("/");
+        : navigate("/nbfc/bre-config");
     }
   };
 
@@ -109,9 +118,34 @@ const LoanProductTables: React.FC<BRETablesProps> = ({
                         <FormField
                           control={form.control}
                           name={`mappings.${index}.value`}
-                          render={({ field }) => (
-                            <Input type="number" placeholder="0" {...field} />
-                          )}
+                          render={({ field }) =>
+                            paramsArr[index].dropdown ? (
+                              <Select
+                                value={String(field.value)}
+                                onValueChange={field.onChange}
+                              >
+                                <SelectTrigger className="w-full">
+                                  <SelectValue
+                                    placeholder={`Select ${paramsArr[index].name}`}
+                                  />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  {paramsArr[index].dropdown.map(
+                                    (option: any) => (
+                                      <SelectItem
+                                        key={option.value}
+                                        value={option.value}
+                                      >
+                                        {option.label}
+                                      </SelectItem>
+                                    )
+                                  )}
+                                </SelectContent>
+                              </Select>
+                            ) : (
+                              <Input type="number" placeholder="0" {...field} />
+                            )
+                          }
                         />
                       </TableCell>
 
@@ -137,7 +171,7 @@ const LoanProductTables: React.FC<BRETablesProps> = ({
             <div className="flex justify-end mt-4">
               <Button
                 type="submit"
-                className="bg-blue-600 hover:bg-blue-700 text-white mr-5"
+                className="text-lg p-4 bg-blue-600 hover:bg-blue-700 text-white mr-5"
               >
                 Submit
               </Button>

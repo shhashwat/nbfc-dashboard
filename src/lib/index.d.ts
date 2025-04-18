@@ -15,3 +15,10 @@ declare interface BRETablesProps {
   navTo: string;
   paramsArr: any[];
 }
+
+declare interface LoanProductTablesProps {
+  title: string;
+  subtitle: string;
+  navTo: string;
+  paramsArr: any[];
+}
