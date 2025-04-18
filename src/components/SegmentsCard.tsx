@@ -1,12 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 
-type myCardComponents = {
-  imgSrc: string;
-  imgAlt: string;
-  heading: string;
-  subtext: string;
-  badge?: string;
-};
+
 
 const SegmentsCard = ({
   imgSrc,

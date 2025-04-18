@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
+
 import { useLocation, useNavigate } from "react-router-dom";
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
+import { CircleCheck } from "lucide-react";
+
 import CardHeader from "./CardHeader";
 import LoanProductTables from "./LoanProductTables";
-import {
-  loanProductConfigTabs,
-  loanProductConfigTabContent,
-} from "@/lib/constants";
-import { CircleCheck } from "lucide-react";
-import { useTabStore } from "@/lib/store/useTabStore"; // Import Zustand store
+
+import { loanProductConfigTabs, loanProductConfigTabContent } from "@/lib/constants";
+import { useTabStore } from "@/lib/store/useTabStore"; // Zustand store
+
 
 const LoanProductConfig = () => {
   const location = useLocation();

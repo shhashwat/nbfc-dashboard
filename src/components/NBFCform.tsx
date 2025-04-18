@@ -28,15 +28,30 @@ import CardHeadline from "./CardHeadline";
 
 import { rbiLisenceTypes } from "@/lib/constants";
 
-const fileSchema = z
-  .instanceof(File, { message: "File is required" })
-  .refine((file) => file.size <= 5 * 1024 * 1024, {
-    message: "Max file size is 5MB",
-  })
-  .refine((file) => file.type === "application/pdf", {
-    message: "Only PDF files are accepted",
-  })
-  .optional();
+const fileSchema = z.instanceof(File, { message: "File is required" })
+    .refine((file) => file.size <= 5 * 1024 * 1024, {
+      message: "Max file size is 5MB",
+    })
+    .refine(
+      (file) => {
+        const allowedTypes = [
+          "image/jpeg", // jpg, jpeg
+          "image/png", // png
+          "image/gif", // gif
+          "application/pdf", // pdf
+          "text/csv", // csv
+          "application/vnd.ms-excel", // xls
+          "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", // xlsx
+          "application/vnd.ms-excel.sheet.macroenabled.12", // xlsm
+        ];
+        return allowedTypes.includes(file.type);
+      },
+      {
+        message:
+          "Only the following file types are accepted: jpg, jpeg, png, gif, pdf, csv, xls, xlsx, xlsm",
+      }
+    )
+    .optional();
 
 const formSchema = z.object({
   nbfcName: z.string().min(4, { message: "NBFC Name is required" }),
@@ -341,7 +356,7 @@ const NBFCform = () => {
                       {/* Hidden File Input */}
                       <input
                         type="file"
-                        accept="application/pdf"
+                        accept=".jpg, .jpeg, .png, .gif, .pdf, .csv, .xls, .xlsx, .xlsm"
                         ref={(e) => {
                           fileRef.current = e;
                           field.ref(e);
@@ -423,7 +438,7 @@ const NBFCform = () => {
                       {/* Hidden File Input */}
                       <input
                         type="file"
-                        accept="application/pdf"
+                        accept=".jpg, .jpeg, .png, .gif, .pdf, .csv, .xls, .xlsx, .xlsm"
                         ref={(e) => {
                           fileRef.current = e;
                           field.ref(e);
@@ -505,7 +520,7 @@ const NBFCform = () => {
                       {/* Hidden File Input */}
                       <input
                         type="file"
-                        accept="application/pdf"
+                        accept=".jpg, .jpeg, .png, .gif, .pdf, .csv, .xls, .xlsx, .xlsm"
                         ref={(e) => {
                           fileRef.current = e;
                           field.ref(e);
@@ -587,7 +602,7 @@ const NBFCform = () => {
                       {/* Hidden File Input */}
                       <input
                         type="file"
-                        accept="application/pdf"
+                        accept=".jpg, .jpeg, .png, .gif, .pdf, .csv, .xls, .xlsx, .xlsm"
                         ref={(e) => {
                           fileRef.current = e;
                           field.ref(e);
@@ -669,7 +684,7 @@ const NBFCform = () => {
                       {/* Hidden File Input */}
                       <input
                         type="file"
-                        accept="application/pdf"
+                        accept=".jpg, .jpeg, .png, .gif, .pdf, .csv, .xls, .xlsx, .xlsm"
                         ref={(e) => {
                           fileRef.current = e;
                           field.ref(e);
@@ -751,7 +766,7 @@ const NBFCform = () => {
                       {/* Hidden File Input */}
                       <input
                         type="file"
-                        accept="application/pdf"
+                        accept=".jpg, .jpeg, .png, .gif, .pdf, .csv, .xls, .xlsx, .xlsm"
                         ref={(e) => {
                           fileRef.current = e;
                           field.ref(e);

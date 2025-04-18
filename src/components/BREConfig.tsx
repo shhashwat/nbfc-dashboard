@@ -1,11 +1,17 @@
 import { useEffect, useState } from "react";
+
 import { useLocation, useNavigate } from "react-router-dom";
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
+import { CircleCheck } from "lucide-react";
+
 import CardHeader from "./CardHeader";
 import BRETables from "./BRETables";
+
 import { breConfigTabs, breConfigTabContent } from "@/lib/constants";
-import { useTabStore } from "@/lib/store/useTabStore"; // Import Zustand store
-import { CircleCheck } from "lucide-react"; // Icon for submitted tabs
+import { useTabStore } from "@/lib/store/useTabStore"; // Zustand store
+
 
 const BREConfig = () => {
   const location = useLocation();

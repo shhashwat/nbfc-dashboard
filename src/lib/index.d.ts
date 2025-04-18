@@ -1,3 +1,11 @@
+declare type myCardComponents = {
+  imgSrc: string;
+  imgAlt: string;
+  heading: string;
+  subtext: string;
+  badge?: string;
+};
+
 declare interface CardHeaderHandle {
   getValue: () => string;
 }
