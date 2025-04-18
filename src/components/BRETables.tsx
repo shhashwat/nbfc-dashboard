@@ -49,8 +49,8 @@ const BRETables: React.FC<BRETablesProps> = ({
     defaultValues: {
       mappings: paramsArr.map((param) => ({
         parameter: param.name,
-        value: 0,
-        weightage: 0,
+        value: undefined,
+        weightage: undefined,
         mandatory: true || false,
       })),
     },
@@ -118,7 +118,11 @@ const BRETables: React.FC<BRETablesProps> = ({
                           control={form.control}
                           name={`mappings.${index}.value`}
                           render={({ field }) => (
-                            <Input type="number" placeholder="0" {...field} />
+                            <Input
+                              type="number"
+                              placeholder={paramsArr[index].subtitle}
+                              {...field}
+                            />
                           )}
                         />
                       </TableCell>
@@ -127,7 +131,14 @@ const BRETables: React.FC<BRETablesProps> = ({
                           control={form.control}
                           name={`mappings.${index}.weightage`}
                           render={({ field }) => (
-                            <Input type="number" placeholder="0" {...field} />
+                            <Input
+                              type="number"
+                              min={0}
+                              max={100}
+                              step={0.1}
+                              placeholder={`${(Math.random() * 9 + 1).toFixed(1)}%`}
+                              {...field}
+                            />
                           )}
                         />
                       </TableCell>

@@ -150,7 +150,7 @@ const LoanProductTables: React.FC<LoanProductTablesProps> = ({
                                 </SelectContent>
                               </Select>
                             ) : (
-                              <Input type="number" placeholder="0" {...field} />
+                              <Input type="number" placeholder={paramsArr[index].subtitle} {...field} />
                             )
                           }
                         />

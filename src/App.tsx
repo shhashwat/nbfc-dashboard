@@ -9,6 +9,7 @@ import DisbursementFileInfer from './components/DisbursementFileInfer';
 import BREConfig from './components/BREConfig';
 import LoanProductConfig from './components/LoanProductConfig';
 import NotFound from './components/NotFound';
+import ContactPage from './components/Contact';
 
 function App() {
 
@@ -86,9 +87,10 @@ function App() {
         />
 
         {/* 404 PAGE */}
-        <Route
-          path="*"
-          element={<NotFound/>}/>
+        <Route path="*" element={<NotFound />} />
+
+        {/* CONTACT PAGE */}
+        <Route path="/contact" element={<ContactPage/>}/>
       </Routes>
     </>
   );
