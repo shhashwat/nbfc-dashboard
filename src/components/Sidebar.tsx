@@ -1,7 +1,19 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 const Sidebar: React.FC = () => {
+  const location = useLocation();
+
+  const getLinkClass = (pathSegment: string) => {
+    const isActive =
+      location.pathname === "/" || location.pathname.includes(pathSegment);
+    return `flex items-center px-4 py-1 rounded-full ${
+      isActive
+        ? "bg-blue-100 text-blue-600 font-bold"
+        : "text-gray-700 hover:bg-blue-100 hover:text-blue-600 hover:font-bold"
+    }`;
+  };
+
   return (
     <aside className="sticky top-0 h-screen w-64 bg-white p-4">
       {/* Logo */}
@@ -22,10 +34,11 @@ const Sidebar: React.FC = () => {
             <NavLink
               to="/overview"
               className={({ isActive }) =>
-                `flex items-center px-4 py-1 rounded-full ` +
-                (isActive
-                  ? "bg-blue-100 text-blue-600 font-bold"
-                  : "text-gray-700 hover:bg-blue-100 hover:text-blue-600 hover:font-bold")
+                `flex items-center px-4 py-1 rounded-full ${
+                  isActive
+                    ? "bg-blue-100 text-blue-600 font-bold"
+                    : "text-gray-700 hover:bg-blue-100 hover:text-blue-600 hover:font-bold"
+                }`
               }
             >
               <img
@@ -37,15 +50,7 @@ const Sidebar: React.FC = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink
-              to="/"
-              className={({ isActive }) =>
-                `flex items-center px-4 py-1 rounded-full ` +
-                (isActive
-                  ? "bg-blue-100 text-blue-600 font-bold"
-                  : "text-gray-700 hover:bg-blue-100 hover:text-blue-600 hover:font-bold")
-              }
-            >
+            <NavLink to="/" className={getLinkClass("/nbfc")}>
               <img
                 src="/images/icons/nbfc_sidebar.svg"
                 alt="nbfc onboarding"
@@ -58,10 +63,11 @@ const Sidebar: React.FC = () => {
             <NavLink
               to="/applications"
               className={({ isActive }) =>
-                `flex items-center px-4 py-1 rounded-full ` +
-                (isActive
-                  ? "bg-blue-100 text-blue-600 font-bold"
-                  : "text-gray-700 hover:bg-blue-100 hover:text-blue-600 hover:font-bold")
+                `flex items-center px-4 py-1 rounded-full ${
+                  isActive
+                    ? "bg-blue-100 text-blue-600 font-bold"
+                    : "text-gray-700 hover:bg-blue-100 hover:text-blue-600 hover:font-bold"
+                }`
               }
             >
               <img
@@ -76,10 +82,11 @@ const Sidebar: React.FC = () => {
             <NavLink
               to="/history"
               className={({ isActive }) =>
-                `flex items-center px-4 py-1 rounded-full ` +
-                (isActive
-                  ? "bg-blue-100 text-blue-600 font-bold"
-                  : "text-gray-700 hover:bg-blue-100 hover:text-blue-600 hover:font-bold")
+                `flex items-center px-4 py-1 rounded-full ${
+                  isActive
+                    ? "bg-blue-100 text-blue-600 font-bold"
+                    : "text-gray-700 hover:bg-blue-100 hover:text-blue-600 hover:font-bold"
+                }`
               }
             >
               <img
@@ -94,10 +101,11 @@ const Sidebar: React.FC = () => {
             <NavLink
               to="/manager-user"
               className={({ isActive }) =>
-                `flex items-center px-4 py-1 rounded-full ` +
-                (isActive
-                  ? "bg-blue-100 text-blue-600 font-bold"
-                  : "text-gray-700 hover:bg-blue-100 hover:text-blue-600 hover:font-bold")
+                `flex items-center px-4 py-1 rounded-full ${
+                  isActive
+                    ? "bg-blue-100 text-blue-600 font-bold"
+                    : "text-gray-700 hover:bg-blue-100 hover:text-blue-600 hover:font-bold"
+                }`
               }
             >
               <img
@@ -112,10 +120,11 @@ const Sidebar: React.FC = () => {
             <NavLink
               to="/reports"
               className={({ isActive }) =>
-                `flex items-center px-4 py-1 rounded-full ` +
-                (isActive
-                  ? "bg-blue-100 text-blue-600 font-bold"
-                  : "text-gray-700 hover:bg-blue-100 hover:text-blue-600 hover:font-bold")
+                `flex items-center px-4 py-1 rounded-full ${
+                  isActive
+                    ? "bg-blue-100 text-blue-600 font-bold"
+                    : "text-gray-700 hover:bg-blue-100 hover:text-blue-600 hover:font-bold"
+                }`
               }
             >
               <img
