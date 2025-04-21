@@ -63,7 +63,6 @@ const LoanProductConfig = () => {
       ) : (<Tabs
             value={activeTab}
             onValueChange={handleTabChange}
-            className="w-[400px]"
           >
             <TabsList className="w-[67rem]">
               {loanProductConfigTabs.map((tab) => (

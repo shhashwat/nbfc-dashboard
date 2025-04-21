@@ -17,7 +17,7 @@ const FormSectionCard: React.FC<FormSectionCardProps> = ({
   const inputs = Array.from({ length: 5 }, (_, i) => i);
 
   return (
-    <Card className="w-full">
+    <Card className="w-[62rem] -translate-12">
       <CardHeader>
         <CardTitle>{title}</CardTitle>
         {description && (
@@ -37,7 +37,7 @@ const FormSectionCard: React.FC<FormSectionCardProps> = ({
         >
           {inputs.map((index) => (
             <div key={index} className="space-y-2">
-              <Skeleton className="h-8 w-full" />
+              <Skeleton className="h-8 w-full bg-gray-300" />
             </div>
           ))}
         </div>

@@ -178,7 +178,7 @@ const NBFCform = () => {
             <MultiSectionForm
               sections={formSkeletons}
               inputColumns={3}
-              spacing="loose"
+              spacing="tight"
             />
           </div>
         </div>

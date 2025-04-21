@@ -1,26 +1,32 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const Sidebar: React.FC = () => {
   return (
     <aside className="sticky top-0 h-screen w-64 bg-white p-4">
       {/* Logo */}
       <div className="mb-8">
-        <a href="#" className="block">
+        <NavLink to="/" className="block">
           <img
             src="/images/Bank_of_Maharashtra_logo.svg"
             alt="Bank of Maharashtra Logo"
             className="w-48 h-auto"
           />
-        </a>
+        </NavLink>
       </div>
 
       {/* Navigation */}
       <nav>
         <ul className="space-y-1">
           <li>
-            <a
-              href="#"
-              className="flex items-center px-4 py-1 text-gray-700 hover:bg-blue-100 hover:text-blue-600 rounded-full hover:font-bold"
+            <NavLink
+              to="/overview"
+              className={({ isActive }) =>
+                `flex items-center px-4 py-1 rounded-full ` +
+                (isActive
+                  ? "bg-blue-100 text-blue-600 font-bold"
+                  : "text-gray-700 hover:bg-blue-100 hover:text-blue-600 hover:font-bold")
+              }
             >
               <img
                 src="/images/icons/overview_sidebar.svg"
@@ -28,72 +34,97 @@ const Sidebar: React.FC = () => {
                 className="mr-2 w-6"
               />
               Overview
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a
-              href="#"
-              className="flex items-center px-4 py-1 bg-blue-100 text-blue-600 rounded-full font-bold"
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                `flex items-center px-4 py-1 rounded-full ` +
+                (isActive
+                  ? "bg-blue-100 text-blue-600 font-bold"
+                  : "text-gray-700 hover:bg-blue-100 hover:text-blue-600 hover:font-bold")
+              }
             >
               <img
                 src="/images/icons/nbfc_sidebar.svg"
-                alt="overview"
+                alt="nbfc onboarding"
                 className="mr-2 w-6"
               />
               NBFC Onboarding
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a
-              href="#"
-              className="flex items-center px-4 py-1 text-gray-700 hover:bg-blue-100 hover:text-blue-600 rounded-full hover:font-bold"
+            <NavLink
+              to="/applications"
+              className={({ isActive }) =>
+                `flex items-center px-4 py-1 rounded-full ` +
+                (isActive
+                  ? "bg-blue-100 text-blue-600 font-bold"
+                  : "text-gray-700 hover:bg-blue-100 hover:text-blue-600 hover:font-bold")
+              }
             >
               <img
                 src="/images/icons/app_list_sidebar.svg"
-                alt="overview"
+                alt="applications list"
                 className="mr-2 w-6"
               />
               Applications List
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a
-              href="#"
-              className="flex items-center px-4 py-1 text-gray-700 hover:bg-blue-100 hover:text-blue-600 rounded-full hover:font-bold"
+            <NavLink
+              to="/history"
+              className={({ isActive }) =>
+                `flex items-center px-4 py-1 rounded-full ` +
+                (isActive
+                  ? "bg-blue-100 text-blue-600 font-bold"
+                  : "text-gray-700 hover:bg-blue-100 hover:text-blue-600 hover:font-bold")
+              }
             >
               <img
                 src="/images/icons/history_sidebar.svg"
-                alt="overview"
+                alt="history"
                 className="mr-2 w-6"
               />
               History
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a
-              href="#"
-              className="flex items-center px-4 py-1 text-gray-700 hover:bg-blue-100 hover:text-blue-600 rounded-full hover:font-bold"
+            <NavLink
+              to="/manager-user"
+              className={({ isActive }) =>
+                `flex items-center px-4 py-1 rounded-full ` +
+                (isActive
+                  ? "bg-blue-100 text-blue-600 font-bold"
+                  : "text-gray-700 hover:bg-blue-100 hover:text-blue-600 hover:font-bold")
+              }
             >
               <img
                 src="/images/icons/manager_user_sidebar.svg"
-                alt="overview"
+                alt="manager user"
                 className="mr-2 w-6"
               />
               Manager User
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a
-              href="#"
-              className="flex items-center px-4 py-1 text-gray-700 hover:bg-blue-100 hover:text-blue-600 rounded-full hover:font-bold"
+            <NavLink
+              to="/reports"
+              className={({ isActive }) =>
+                `flex items-center px-4 py-1 rounded-full ` +
+                (isActive
+                  ? "bg-blue-100 text-blue-600 font-bold"
+                  : "text-gray-700 hover:bg-blue-100 hover:text-blue-600 hover:font-bold")
+              }
             >
               <img
                 src="/images/icons/reports_sidebar.svg"
-                alt="overview"
+                alt="reports"
                 className="mr-2 w-6"
               />
               Reports
-            </a>
+            </NavLink>
           </li>
         </ul>
       </nav>
