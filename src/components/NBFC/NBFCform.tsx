@@ -31,30 +31,31 @@ import CardHeadline from "../CardHeadline";
 import { rbiLisenceTypes } from "@/lib/constants";
 import { formatIndianNumber } from "@/lib/utils";
 
-const fileSchema = z.instanceof(File, { message: "File is required" })
-    .refine((file) => file.size <= 5 * 1024 * 1024, {
-      message: "Max file size is 5MB",
-    })
-    .refine(
-      (file) => {
-        const allowedTypes = [
-          "image/jpeg", // jpg, jpeg
-          "image/png", // png
-          "image/gif", // gif
-          "application/pdf", // pdf
-          "text/csv", // csv
-          "application/vnd.ms-excel", // xls
-          "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", // xlsx
-          "application/vnd.ms-excel.sheet.macroenabled.12", // xlsm
-        ];
-        return allowedTypes.includes(file.type);
-      },
-      {
-        message:
-          "Only the following file types are accepted: jpg, jpeg, png, gif, pdf, csv, xls, xlsx, xlsm",
-      }
-    )
-    .optional();
+const fileSchema = z
+  .instanceof(File, { message: "File is required" })
+  .refine((file) => file.size <= 5 * 1024 * 1024, {
+    message: "Max file size is 5MB",
+  })
+  .refine(
+    (file) => {
+      const allowedTypes = [
+        "image/jpeg", // jpg, jpeg
+        "image/png", // png
+        "image/gif", // gif
+        "application/pdf", // pdf
+        "text/csv", // csv
+        "application/vnd.ms-excel", // xls
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", // xlsx
+        "application/vnd.ms-excel.sheet.macroenabled.12", // xlsm
+      ];
+      return allowedTypes.includes(file.type);
+    },
+    {
+      message:
+        "Only the following file types are accepted: jpg, jpeg, png, gif, pdf, csv, xls, xlsx, xlsm",
+    }
+  )
+  .optional();
 
 const formSchema = z.object({
   nbfcName: z.string().min(4, { message: "NBFC Name is required" }),
@@ -124,9 +125,8 @@ const formSchema = z.object({
 });
 
 const NBFCform = () => {
-
   const [loading, setLoading] = useState(true);
-  
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
