@@ -24,9 +24,10 @@ import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { Input } from "@/components/ui/input";
 
-import CardHeader from "./CardHeader";
+import CardHeader from "../CardHeader";
 
 import { loanProductConfigTableHeaders } from "@/lib/constants";
+import { clampPercentage, formatIndianNumber } from "@/lib/utils";
 
 
 const rowSchema = z.object({
@@ -134,6 +135,7 @@ const LoanProductTables: React.FC<LoanProductTablesProps> = ({
                                 <SelectTrigger className="w-full">
                                   <SelectValue
                                     placeholder={`Select ${paramsArr[index].name}`}
+                                    className="placeholder-gray-400 placeholder-text-sm"
                                   />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -149,8 +151,59 @@ const LoanProductTables: React.FC<LoanProductTablesProps> = ({
                                   )}
                                 </SelectContent>
                               </Select>
+                            ) : paramsArr[index].type === "money" ? (
+                              <div className="relative">
+                                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">
+                                  ₹
+                                </span>
+                                <Input
+                                  placeholder={paramsArr[index].subtitle}
+                                  inputMode="numeric"
+                                  className="pl-7" // make room for ₹ symbol
+                                  value={
+                                    field.value
+                                      ? formatIndianNumber(
+                                          field.value.toString()
+                                        )
+                                      : ""
+                                  }
+                                  onChange={(e) => {
+                                    const raw = e.target.value.replace(
+                                      /[^0-9]/g,
+                                      ""
+                                    );
+                                    field.onChange(raw);
+                                  }}
+                                />
+                              </div>
+                            ) : paramsArr[index].type === "percent" ? (
+                              <div className="relative">
+                                <Input
+                                  type="number"
+                                  step="any"
+                                  min={0}
+                                  max={100}
+                                  placeholder={`${(
+                                    Math.random() * 9 +
+                                    1
+                                  ).toFixed(1)}`}
+                                  className="pr-7"
+                                  value={field.value ?? ""}
+                                  onChange={(e) => {
+                                    const num = parseFloat(e.target.value);
+                                    field.onChange(clampPercentage(num));
+                                  }}
+                                />
+                                <span className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm pointer-events-none">
+                                  %
+                                </span>
+                              </div>
                             ) : (
-                              <Input type="number" placeholder={paramsArr[index].subtitle} {...field} />
+                              <Input
+                                type="number"
+                                placeholder={paramsArr[index].subtitle}
+                                {...field}
+                              />
                             )
                           }
                         />

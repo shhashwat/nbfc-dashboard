@@ -35,7 +35,7 @@ const CardHeader = forwardRef<CardHeaderHandle, CardHeaderProps>(
               placeholder="0%"
               min={0}
               max={100}
-              step={1}
+              step={0.1}
             />
             <img src="/images/icons/weightage_icon.svg" alt="edit" />
           </span>

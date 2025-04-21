@@ -23,8 +23,8 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import CardHeader from "./CardHeader";
-import CardHeadline from "./CardHeadline";
+import CardHeader from "../CardHeader";
+import CardHeadline from "../CardHeadline";
 
 import { rbiLisenceTypes } from "@/lib/constants";
 import { formatIndianNumber } from "@/lib/utils";

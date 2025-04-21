@@ -125,11 +125,11 @@ export const lpConfigEmiFrequencies = [
 
 export const lpConfigGoldPurityOptions = [
   { label: "75% 18K", value: "75% 18K" },
-  { label: "80% 22K", value: "80% 22K" },
-  { label: "85% 24K", value: "85% 24K" },
-  { label: "90% 22K", value: "90% 22K" },
-  { label: "95% 24K", value: "95% 24K" },
-  { label: "100% 24K", value: "100% 24K" },
+  { label: "80% 19K", value: "80% 19K" },
+  { label: "85% 20K", value: "85% 20K" },
+  { label: "91.6% 22K", value: "91.6% 22K" },
+  { label: "95.8% 23K", value: "95.8% 23K" },
+  { label: "99.9% 24K", value: "99.9% 24K" },
 ];
 
 export const lpConfigCollateralTypes = [
@@ -239,16 +239,19 @@ export const breConfigBankStatementParams = [
     name: "Average Monthly Balance",
     key: "avgMonthlyBalance",
     subtitle: "Minimum Average Monthly Balance required",
+    type: "money",
   },
   {
     name: "Monthly Credits",
     key: "monthlyCredits",
     subtitle: "Minimum salary/income inflow",
+    type: "money",
   },
   {
     name: "FOIR",
     key: "foir",
     subtitle: "Max EMI to Income Ratio",
+    type: "percent",
   },
   {
     name: "Debit Bounce Count",
@@ -264,15 +267,31 @@ export const breConfigBankStatementParams = [
     name: "EOD Balance Threshold",
     key: "eodBalanceThreshold",
     subtitle: "Min EOD Balance",
+    type: "money",
   },
 ];
 
 export const breConfigKycParams = [
-  {name: "PAN Verification", key: "panVerification", subtitle: "Minimum Name match %"},
-  {name: "Aadhaar Authentication", key: "aadharAuth", subtitle: "Minimum Name match %"},
-  {name: "Video KYC", key: "videoKyc", subtitle: "Minimum face match %"},
-  {name: "Min Age", key: "minAge", subtitle: "Min Age of applicant in years"},
-  {name: "Max Age", key: "maxAge", subtitle: "Max Age of applicant in years"},
+  {
+    name: "PAN Verification",
+    key: "panVerification",
+    subtitle: "Minimum Name match %",
+    type: "percent",
+  },
+  {
+    name: "Aadhaar Authentication",
+    key: "aadharAuth",
+    subtitle: "Minimum Name match %",
+    type: "percent",
+  },
+  {
+    name: "Video KYC",
+    key: "videoKyc",
+    subtitle: "Minimum face match %",
+    type: "percent",
+  },
+  { name: "Min Age", key: "minAge", subtitle: "Min Age of applicant in years" },
+  { name: "Max Age", key: "maxAge", subtitle: "Max Age of applicant in years" },
 ];
 
 export const breConfigIncomeParams = [
@@ -280,16 +299,19 @@ export const breConfigIncomeParams = [
     name: "ITR Filing",
     key: "itrFiling",
     subtitle: "Minimum Name match %",
+    type: "percent",
   },
   {
     name: "GST Filing",
     key: "gstFiling",
     subtitle: "Minimum GST filing value",
+    type: "money",
   },
   {
     name: "Udyam Verification",
     key: "udyamVerification",
     subtitle: "Min udyam details match %",
+    type: "percent",
   },
   {
     name: "Source of Income",
@@ -422,16 +444,19 @@ export const loanProductConfigLoanAmountParams = [
     name: "Max Disbursement Cap",
     key: "maxDisbursementCap",
     subtitle: "Disbursement limit for this loan product",
+    type: "money",
   },
   {
     name: "Min Loan Amount",
     key: "minLoanAmount",
     subtitle: "Lowest amount that can be disbursed",
+    type: "money",
   },
   {
     name: "Max Loan Amount",
     key: "maxLoanAmount",
     subtitle: "Loan exposure allowed per customer across products",
+    type: "money",
   },
   {
     name: "Min Tenure",
@@ -450,21 +475,25 @@ export const loanProductConfigChargesParams = [
     name: "Rate of Interest (ROI)",
     key: "roi",
     subtitle: "Annual interest rate applicable",
+    type: "percent",
   },
   {
     name: "Processing Fee",
     key: "processingFee",
     subtitle: "Fixed one-time loan setup fee",
+    type: "percent",
   },
   {
     name: "Service Fee",
     key: "serviceFee",
     subtitle: "Additional service charge on the loan",
+    type: "percent",
   },
   {
     name: "GST on Service Fee ",
     key: "gstOnServiceFee",
     subtitle: "GST percentage applicable on the service fee",
+    type: "percent",
   },
 ];
 
@@ -499,6 +528,7 @@ export const loanProductConfigCollateralParams = [
     name: "Loan-to-Value (LTV) %",
     key: "ltvPercentage",
     subtitle: "Minimum experience in months ",
+    type: "percent",
   },
   {
     name: "Collateral Type Required?",

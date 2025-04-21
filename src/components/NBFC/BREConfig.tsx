@@ -6,7 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import { CircleCheck } from "lucide-react";
 
-import CardHeader from "./CardHeader";
+import CardHeader from "../CardHeader";
 import BRETables from "./BRETables";
 
 import { breConfigTabs, breConfigTabContent } from "@/lib/constants";

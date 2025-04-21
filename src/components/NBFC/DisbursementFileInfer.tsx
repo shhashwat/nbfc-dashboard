@@ -23,8 +23,8 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
-import CardHeader from "./CardHeader";
-import CardHeadline from "./CardHeadline";
+import CardHeader from "../CardHeader";
+import CardHeadline from "../CardHeadline";
 
 import { ChevronDown } from "lucide-react";
 

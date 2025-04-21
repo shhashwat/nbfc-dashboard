@@ -1,7 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 
 import { X } from "lucide-react";
-import SegmentsCard from "./SegmentsCard";
+import SegmentsCard from "../SegmentsCard";
 import { Link } from "react-router-dom";
 
 const SegmentSelection = () => {
@@ -30,7 +30,7 @@ const SegmentSelection = () => {
               />
             </Link>
 
-            <Link to={'/nbfc/nbfc-form'}>
+            <Link to={"/nbfc/nbfc-form"}>
               <SegmentsCard
                 imgSrc="/images/pool_buyout_segment.svg"
                 imgAlt="Pool Buyout Segment"
@@ -39,7 +39,6 @@ const SegmentSelection = () => {
                 subtext="Acquire high-quality loan pools with ease and efficiency."
               />
             </Link>
-
           </CardContent>
         </Card>
       </div>
