@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import Layout from "../Layout";
 import History from "./History";
+import NotFound from "../NotFound";
 
 const HistoryRoutes = () => {
   return (
@@ -10,10 +11,13 @@ const HistoryRoutes = () => {
           path=""
           element={
             <Layout>
-                <History/>
+              <History />
             </Layout>
           }
         />
+
+        {/* 404 PAGE */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );

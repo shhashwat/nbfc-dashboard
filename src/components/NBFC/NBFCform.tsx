@@ -130,7 +130,7 @@ const NBFCform = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 500);
+    }, 200);
     return () => clearTimeout(timer);
   }, []);
 
