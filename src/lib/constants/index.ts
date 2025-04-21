@@ -142,6 +142,22 @@ export const lpConfigCollateralTypes = [
   { label: "Other", value: "Other" },
 ];
 
+//NBFC SKELETON
+export const formSkeletons = [
+  {
+    id: "nbfcEstablishmentDetails",
+    title: "1. NBFC Establishment Details",
+  },
+  {
+    id: "nbfcContactDetails",
+    title: "2. NBFC Contact Details",
+  },
+  {
+    id: "requiredDocs",
+    title: "3. Upload Required Documents",
+  },
+];
+
 
 
 // DISBURSEMENT

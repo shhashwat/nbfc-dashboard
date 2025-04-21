@@ -3,7 +3,7 @@ import Layout from "../Layout";
 import OnboardingPage from "./OnboardingPage";
 import SegmentSelection from "./SegmentSelection";
 import NBFCform from "./NBFCform";
-import DisbursementFileUpload from "../DisbursementFileUpload";
+import DisbursementFileUpload from "./DisbursementFileUpload";
 import DisbursementFileInfer from "./DisbursementFileInfer";
 import BREConfig from "./BREConfig";
 import LoanProductConfig from "./LoanProductConfig";

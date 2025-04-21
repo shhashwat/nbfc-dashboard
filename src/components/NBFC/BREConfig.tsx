@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import { useLocation, useNavigate } from "react-router-dom";
 
+import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import { CircleCheck } from "lucide-react";
@@ -11,9 +12,20 @@ import BRETables from "./BRETables";
 
 import { breConfigTabs, breConfigTabContent } from "@/lib/constants";
 import { useTabStore } from "@/lib/store/useTabStore"; // Zustand store
+import { SkeletonTableShimmer } from "../ui/skeleton-table";
 
 
 const BREConfig = () => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -42,37 +54,46 @@ const BREConfig = () => {
   return (
     <div className="flex flex-col space-y-4 p-5">
       <CardHeader title="BRE Configuration" />
+      {loading ? (
+        <Card className="w-[67rem] mt-40">
+          <CardContent>
+            <SkeletonTableShimmer rows={2} columns={3} />
+          </CardContent>
+        </Card>
+      ):(<Tabs
+          value={activeTab}
+          onValueChange={handleTabChange}
+          className="w-[400px]"
+        >
+          <TabsList className="">
+            {breConfigTabs.map((tab) => (
+              <TabsTrigger
+                className="bre-tabs"
+                value={tab.value}
+                key={tab.value}
+              >
+                <div className="flex items-center space-x-2">
+                  {submittedTabs.includes(tab.value) && (
+                    <CircleCheck className="text-green-500 text-sm" />
+                  )}
+                  <span>{tab.name}</span>
+                </div>
+              </TabsTrigger>
+            ))}
+          </TabsList>
 
-      <Tabs
-        value={activeTab}
-        onValueChange={handleTabChange}
-        className="w-[400px]"
-      >
-        <TabsList className="">
-          {breConfigTabs.map((tab) => (
-            <TabsTrigger className="bre-tabs" value={tab.value} key={tab.value}>
-              <div className="flex items-center space-x-2">
-                {submittedTabs.includes(tab.value) && (
-                  <CircleCheck className="text-green-500 text-sm" />
-                )}
-                <span>{tab.name}</span>
-              </div>
-            </TabsTrigger>
+          {breConfigTabContent.map((tab) => (
+            <TabsContent key={tab.value} value={tab.value}>
+              <BRETables
+                title={tab.title}
+                subtitle={tab.subtitle}
+                navTo={tab.navTo}
+                paramsArr={tab.paramsArr}
+                onSubmit={() => handleFormSubmit(tab.value)} // Pass the submission callback
+              />
+            </TabsContent>
           ))}
-        </TabsList>
-
-        {breConfigTabContent.map((tab) => (
-          <TabsContent key={tab.value} value={tab.value}>
-            <BRETables
-              title={tab.title}
-              subtitle={tab.subtitle}
-              navTo={tab.navTo}
-              paramsArr={tab.paramsArr}
-              onSubmit={() => handleFormSubmit(tab.value)} // Pass the submission callback
-            />
-          </TabsContent>
-        ))}
-      </Tabs>
+        </Tabs>)}
     </div>
   );
 };

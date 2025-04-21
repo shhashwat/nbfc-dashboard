@@ -9,11 +9,10 @@ import { useNavigate } from "react-router-dom";
 import { Form, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import CardHeader from "./CardHeader";
-import CardHeadline from "./CardHeadline";
+import CardHeader from "../CardHeader";
+import CardHeadline from "../CardHeadline";
 
 import { ChevronDown } from "lucide-react";
-
 
 const formSchema = z.object({
   file: z
@@ -69,22 +68,23 @@ const DisbursementFileUpload = () => {
         <form
           id="nbfc-form"
           className="space-y-4"
-          onSubmit={form.handleSubmit(onSubmit)}>
-      <div className="bg-white shadow-sm rounded-lg p-4 space-y-3 space-x-4">
-        <div className="flex items-center justify-between">
-          <CardHeadline title="Upload Disbursement File" hr="no" />
+          onSubmit={form.handleSubmit(onSubmit)}
+        >
+          <div className="bg-white shadow-sm rounded-lg p-4 space-y-3 space-x-4">
+            <div className="flex items-center justify-between">
+              <CardHeadline title="Upload Disbursement File" hr="no" />
 
-          <Button
-            type="button"
-            variant="outline"
-            className="rounded-sm bg-white text-blue-600 border-blue-500 hover:bg-blue-50"
-          >
-            Export Sample File
-            <ChevronDown />
-          </Button>
-        </div>
+              <Button
+                type="button"
+                variant="outline"
+                className="rounded-sm bg-white text-blue-600 border-blue-500 hover:bg-blue-50"
+              >
+                Export Sample File
+                <ChevronDown />
+              </Button>
+            </div>
 
-        <hr />
+            <hr />
 
             {/* Wrap all form components within the Form provider */}
             <span className="flex flex-col items-center justify-center p-10">
@@ -173,18 +173,18 @@ const DisbursementFileUpload = () => {
                 </Label>
               </div>
             </span>
-            </div>
-            <span className="flex justify-end items-center space-x-2 mr-8">
-                <Button
-                    className="text-lg p-5 rounded-sm bg-blue-500 hover:bg-blue-600 text-white"
-                    type="submit"
-                >
-                    Next
-                </Button>
-            </span>
-          </form>
-        </Form>
-      </div>
+          </div>
+          <span className="flex justify-end items-center space-x-2 mr-8">
+            <Button
+              className="text-lg p-5 rounded-sm bg-blue-500 hover:bg-blue-600 text-white"
+              type="submit"
+            >
+              Next
+            </Button>
+          </span>
+        </form>
+      </Form>
+    </div>
   );
 };
 
