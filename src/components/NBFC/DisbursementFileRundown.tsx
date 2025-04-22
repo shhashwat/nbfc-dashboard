@@ -44,7 +44,7 @@ const DisbursementFileRundown = () => {
             <p className="font-bold">Pool Batch ID:</p>
             <p>POL987868787</p>
             <Badge variant={"outline"} className="text-xs font-semibold">
-              Disbursed
+              In Progress
             </Badge>
           </span>
 
@@ -81,7 +81,7 @@ const DisbursementFileRundown = () => {
             </span>
             <Progress
               value={progress1}
-              className="w-[14rem] mt-5 -ml-55 -mr-55"
+              className="w-[14rem] mt-5 -ml-58 -mr-55"
             />
             <span className="flex flex-col items-center space-y-1">
               <ButtonRound
@@ -98,7 +98,7 @@ const DisbursementFileRundown = () => {
             </span>
             <Progress
               value={progress2}
-              className="w-[14rem] mt-5 -ml-55 -mr-50"
+              className="w-[14rem] mt-5 -ml-58 -mr-50"
             />
             <span className="flex flex-col items-center space-y-1">
               <ButtonRound
@@ -149,7 +149,7 @@ const DisbursementFileRundown = () => {
             alt="NBFC_BRE_disbursement"
           />
         </Button>
-        <Button className="flex justify-between min-w-[11rem] items-center bg-[#0089CF]">
+        <Button className="flex justify-between min-w-[11rem] items-center bg-[#0089CF] hover:bg-[#0089CF]/75">
           <p>Disbursed Total POS Amount</p>
           <ChevronUpSquare />
         </Button>
