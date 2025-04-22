@@ -33,30 +33,40 @@ const Sidebar: React.FC = () => {
           <li>
             <NavLink
               to="/overview"
-              className={({ isActive }) =>
-                `flex items-center px-4 py-1 rounded-full ${
-                  isActive
-                    ? "bg-blue-100 text-blue-600 font-bold"
-                    : "text-gray-700 hover:bg-blue-100 hover:text-blue-600 hover:font-bold"
-                }`
-              }
+              className={({ isActive }) => {
+                const linkClasses = isActive
+                  ? "bg-blue-100 text-blue-600 font-bold"
+                  : "text-gray-700 hover:bg-blue-100 hover:text-blue-600 hover:font-bold";
+
+                return `flex items-center px-4 py-1 rounded-full ${linkClasses}`;
+              }}
             >
-              <img
-                src="/images/icons/overview_sidebar.svg"
-                alt="overview"
-                className="mr-2 w-6"
-              />
-              Overview
+              {({ isActive }) => (
+                <>
+                  <img
+                    src="/images/icons/overview_sidebar.svg"
+                    alt="overview"
+                    className={`mr-2 w-6  hover:filter-blue ${
+                      isActive ? "filter-blue" : ""
+                    }`}
+                  />
+                  Overview
+                </>
+              )}
             </NavLink>
           </li>
           <li>
             <NavLink to="/" className={getLinkClass("/nbfc")}>
-              <img
-                src="/images/icons/nbfc_sidebar.svg"
-                alt="nbfc onboarding"
-                className="mr-2 w-6"
-              />
-              NBFC Onboarding
+              {({ isActive }) => (
+                <>
+                  <img
+                    src="/images/icons/nbfc_sidebar.svg"
+                    alt="overview"
+                    className={`mr-2 w-6 ${isActive ? " " : "filter-gray"}`}
+                  />
+                  NBFC Onboarding
+                </>
+              )}
             </NavLink>
           </li>
           <li>
@@ -70,12 +80,18 @@ const Sidebar: React.FC = () => {
                 }`
               }
             >
-              <img
-                src="/images/icons/app_list_sidebar.svg"
-                alt="applications list"
-                className="mr-2 w-6"
-              />
-              Applications List
+              {({ isActive }) => (
+                <>
+                  <img
+                    src="/images/icons/app_list_sidebar.svg"
+                    alt="applications list"
+                    className={`mr-2 w-6  hover:filter-blue ${
+                      isActive ? "filter-blue" : ""
+                    }`}
+                  />
+                  Applications List
+                </>
+              )}
             </NavLink>
           </li>
           <li>
@@ -89,12 +105,18 @@ const Sidebar: React.FC = () => {
                 }`
               }
             >
-              <img
-                src="/images/icons/history_sidebar.svg"
-                alt="history"
-                className="mr-2 w-6"
-              />
-              History
+              {({ isActive }) => (
+                <>
+                  <img
+                    src="/images/icons/history_sidebar.svg"
+                    alt="history"
+                    className={`mr-2 w-6  hover:filter-blue ${
+                      isActive ? "filter-blue" : ""
+                    }`}
+                  />
+                  History
+                </>
+              )}
             </NavLink>
           </li>
           <li>
@@ -108,12 +130,18 @@ const Sidebar: React.FC = () => {
                 }`
               }
             >
-              <img
-                src="/images/icons/manager_user_sidebar.svg"
-                alt="manager user"
-                className="mr-2 w-6"
-              />
-              Manager User
+              {({ isActive }) => (
+                <>
+                  <img
+                    src="/images/icons/manager_user_sidebar.svg"
+                    alt="manager user"
+                    className={`mr-2 w-6  hover:filter-blue ${
+                      isActive ? "filter-blue" : ""
+                    }`}
+                  />
+                  Manager User
+                </>
+              )}
             </NavLink>
           </li>
           <li>
@@ -127,12 +155,18 @@ const Sidebar: React.FC = () => {
                 }`
               }
             >
-              <img
-                src="/images/icons/reports_sidebar.svg"
-                alt="reports"
-                className="mr-2 w-6"
-              />
-              Reports
+              {({ isActive }) => (
+                <>
+                  <img
+                    src="/images/icons/reports_sidebar.svg"
+                    alt="reports"
+                    className={`mr-2 w-6  hover:filter-blue ${
+                      isActive ? "filter-blue" : ""
+                    }`}
+                  />
+                  Reports
+                </>
+              )}
             </NavLink>
           </li>
         </ul>

@@ -125,6 +125,18 @@ body {
     }
 }
 
+.filter-blue {
+  /* ensure your icon is treated as black first */
+  filter: brightness(0) saturate(100%)
+    /* exact match to #2563eb */
+    invert(21%) sepia(94%) saturate(2786%) hue-rotate(202deg)
+    brightness(95%) contrast(89%);
+}
+
+.filter-gray {
+  filter: invert(20%) sepia(10%) saturate(100%) hue-rotate(0deg) brightness(60%) contrast(0%);
+}
+
 .bre-tabs {
     @apply relative
             px-4 py-2
