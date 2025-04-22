@@ -64,7 +64,8 @@ const BRETables: React.FC<BRETablesProps> = ({
   });
 
   const onSubmitHandler = (data: z.infer<typeof formSchema>) => {
-    const weightage = parseInt(headerRef.current?.getValue() || "0");
+    const inputWeightage = headerRef.current?.getValue() || "0";
+    const weightage = clampPercentage(parseFloat(inputWeightage));
 
     const enteredTotal = data.mappings
       .map((m) => m.weightage || 0)
@@ -79,7 +80,6 @@ const BRETables: React.FC<BRETablesProps> = ({
       return;
     }
 
-    // …existing logic on success…
     console.log("Weightage:", weightage);
     console.log(`BRE Config ${title} Form data submitted:`, data);
 

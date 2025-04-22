@@ -1,5 +1,5 @@
 import { forwardRef, useImperativeHandle, useRef } from "react";
-import { cn } from "@/lib/utils";
+import { clampPercentage, cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 
 const CardHeader = forwardRef<CardHeaderHandle, CardHeaderProps>(
@@ -32,10 +32,19 @@ const CardHeader = forwardRef<CardHeaderHandle, CardHeaderProps>(
               ref={inputRef}
               type="number"
               className="w-[70px] ml-2 text-sm text-center border-gray-300 bg-white rounded-md focus:ring-0 focus:border-gray-300"
-              placeholder="0%"
               min={0}
               max={100}
               step={0.1}
+              placeholder={`${(
+                Math.random() * 9 +
+                1
+              ).toFixed(1)}`}
+              onChange={(e) => {
+                const num = parseFloat(e.target.value);
+                if (inputRef.current) {
+                  inputRef.current.value = clampPercentage(num).toString();
+                }
+              }}
             />
             <img src="/images/icons/weightage_icon.svg" alt="edit" />
           </span>

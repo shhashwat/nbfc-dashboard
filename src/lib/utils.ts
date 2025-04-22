@@ -15,8 +15,5 @@ export function formatIndianNumber(value: string): string {
 }
 
 export function clampPercentage(value: number): number | "" {
-  if (isNaN(value)) return "";
-  if (value < 0) return 0;
-  if (value > 100) return 100;
-  return value;
+  return Math.min(100, Math.max(0, value));
 }
