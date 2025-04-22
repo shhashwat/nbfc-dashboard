@@ -4,6 +4,9 @@ import ButtonRound from "@/components/ButtonRound";
 import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
 import { useEffect, useState } from "react";
+import { SkeletonTable } from "../ui/skeleton-table";
+import { Button } from "../ui/button";
+import { ChevronUpSquare } from "lucide-react";
 const DisbursementFileRundown = () => {
     // const [loading, setLoading] = useState(true);
     const [progress1, setProgress1] = useState(0);
@@ -116,7 +119,7 @@ const DisbursementFileRundown = () => {
               <Label htmlFor="disburse_disbursement"> Disburse </Label>
             </span>
           </span>
-            {/** DISBURSEMENT FILE RUNDOWN */}
+          {/** DISBURSEMENT FILE RUNDOWN */}
           <div className="text-[#62748E] flex justify-between bg-[#C3EEFF] min-h-[40px] min-w-full rounded-2xl p-3">
             <span className="flex justify-between">
               <p className="font-bold">Total App: </p>
@@ -132,6 +135,29 @@ const DisbursementFileRundown = () => {
             </span>
           </div>
         </div>
+      </div>
+
+      {/* BUTTONS */}
+      <div className="flex space-x-8 justify-end mr-5">
+        <Button
+          variant={"outline"}
+          className="flex justify-between min-w-[11rem] items-center text-[#0089CF] border-[#0089CF]"
+        >
+          <p>Run NBFC BRE</p>
+          <img
+            src="/images/icons/NBFC_BRE_disbursement.svg"
+            alt="NBFC_BRE_disbursement"
+          />
+        </Button>
+        <Button className="flex justify-between min-w-[11rem] items-center bg-[#0089CF]">
+          <p>Disbursed Total POS Amount</p>
+          <ChevronUpSquare />
+        </Button>
+      </div>
+
+      {/* TABLE SKELETONS */}
+      <div className="flex flex-col bg-white shadow-sm rounded-lg p-5 space-y-3 space-x-4">
+        <SkeletonTable rows={5} columns={4} />
       </div>
     </div>
   );
