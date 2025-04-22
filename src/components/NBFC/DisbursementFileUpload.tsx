@@ -54,7 +54,7 @@ const DisbursementFileUpload = () => {
 
   const onSubmit: SubmitHandler<z.infer<typeof formSchema>> = (data) => {
     console.log("Disbursement File submitted with data:", data);
-    navigate("/nbfc/disbursement-file-infer");
+    navigate("/nbfc/disbursement-file-rundown");
   };
 
   return (

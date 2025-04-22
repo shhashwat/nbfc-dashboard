@@ -37,3 +37,11 @@ declare interface TabStore {
   submittedTabs: string[];
   markTabAsSubmitted: (tab: string) => void;
 }
+
+declare interface ButtonRoundProps {
+  src: string;
+  alt: string;
+  id: string;
+  className?: string;
+  progress? : number;
+}

@@ -9,6 +9,7 @@ import BREConfig from "./BREConfig";
 import LoanProductConfig from "./LoanProductConfig";
 import NotFound from "../NotFound";
 import ContactPage from "../Contact";
+import DisbursementFileRundown from "./DisbursementFileRundown";
 
 const NBFCRoutes = () => {
   return (
@@ -50,6 +51,15 @@ const NBFCRoutes = () => {
           element={
             <Layout>
               <DisbursementFileUpload />
+            </Layout>
+          }
+        />
+        {/* DISBURSEMENT FILE RUNDOWN */}
+        <Route
+          path="/nbfc/disbursement-file-rundown"
+          element={
+            <Layout>
+              <DisbursementFileRundown />
             </Layout>
           }
         />
