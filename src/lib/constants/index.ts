@@ -497,13 +497,13 @@ export const loanProductConfigChargesParams = [
     name: "Processing Fee",
     key: "processingFee",
     subtitle: "Fixed one-time loan setup fee",
-    type: "percent",
+    type: "money",
   },
   {
     name: "Service Fee",
     key: "serviceFee",
     subtitle: "Additional service charge on the loan",
-    type: "percent",
+    type: "money",
   },
   {
     name: "GST on Service Fee ",

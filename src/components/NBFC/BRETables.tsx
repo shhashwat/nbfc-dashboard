@@ -70,9 +70,11 @@ const BRETables: React.FC<BRETablesProps> = ({
       .map((m) => m.weightage || 0)
       .reduce((sum, w) => sum + w, 0);
 
-    if (enteredTotal !== weightage) {
+    const roundedTotal = Math.round(enteredTotal * 10) / 10;
+
+    if (roundedTotal !== weightage) {
       toast.error(
-        `Total weightage must be exactly ${weightage}%. Currently it's ${enteredTotal}%.`
+        `Total weightage must be exactly ${weightage}%. Currently it's ${roundedTotal}%.`
       );
       return;
     }

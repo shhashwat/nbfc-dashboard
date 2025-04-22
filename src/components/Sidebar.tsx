@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
@@ -57,16 +58,17 @@ const Sidebar: React.FC = () => {
           </li>
           <li>
             <NavLink to="/" className={getLinkClass("/nbfc")}>
-              {({ isActive }) => (
-                <>
-                  <img
-                    src="/images/icons/nbfc_sidebar.svg"
-                    alt="overview"
-                    className={`mr-2 w-6 ${isActive ? " " : "filter-gray"}`}
-                  />
-                  NBFC Onboarding
-                </>
-              )}
+              <img
+                src="/images/icons/nbfc_sidebar.svg"
+                alt="overview"
+                className={cn(
+                  "mr-2 w-6",
+                  location.pathname.includes("/nbfc") || location.pathname === "/"
+                    ? "filter-blue"
+                    : "filter-gray"
+                )}
+              />
+              NBFC Onboarding
             </NavLink>
           </li>
           <li>
