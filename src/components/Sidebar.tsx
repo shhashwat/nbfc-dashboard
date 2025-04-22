@@ -63,7 +63,8 @@ const Sidebar: React.FC = () => {
                 alt="overview"
                 className={cn(
                   "mr-2 w-6",
-                  location.pathname.includes("/nbfc") || location.pathname === "/"
+                  location.pathname.includes("/nbfc") ||
+                    location.pathname === "/"
                     ? "filter-blue"
                     : "filter-gray"
                 )}
@@ -170,6 +171,8 @@ const Sidebar: React.FC = () => {
                 </>
               )}
             </NavLink>
+          </li>
+          <li>
             <NavLink
               to="/help"
               className={({ isActive }) =>
