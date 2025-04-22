@@ -7,6 +7,7 @@ import AppListRoutes from "./components/Applications List/AppListRoutes";
 import HistoryRoutes from "./components/History/HistoryRoutes";
 import ManagerUserRoutes from "./components/Manager User/ManagerUserRoutes";
 import ReportRoutes from "./components/Reports/ReportRoutes";
+import HelpRoutes from "./components/Help/HelpRoutes";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/history/*" element={<HistoryRoutes />} />
         <Route path="/manager-user/*" element={<ManagerUserRoutes />} />
         <Route path="/reports/*" element={<ReportRoutes />} />
+        <Route path="/help/*" element={<HelpRoutes />} />
       </Routes>
     </>
   );

@@ -62,7 +62,7 @@ const DisbursementFileInfer = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 500);
+    }, 200);
 
     return () => clearTimeout(timer);
   }, []);
@@ -81,22 +81,22 @@ const DisbursementFileInfer = () => {
         {
           platformField: "Loan Account Number",
           column: "loanId",
-          required: true,
+          required: false,
         },
         {
           platformField: "Sanctioned Amount",
           column: "sanctionedAmount",
-          required: true,
+          required: false,
         },
         {
           platformField: "Disbursed Amount",
           column: "disbursedAmount",
-          required: true,
+          required: false,
         },
         {
           platformField: "Disbursement Date",
           column: "disbursementDate",
-          required: true,
+          required: false,
         },
         {
           platformField: "Tenure (in months)",

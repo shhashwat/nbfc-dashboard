@@ -57,7 +57,7 @@ const BREConfig = () => {
       {loading ? (
         <Card className="w-[67rem] mt-40">
           <CardContent>
-            <SkeletonTableShimmer rows={2} columns={3} />
+            <SkeletonTableShimmer rows={4} columns={3} />
           </CardContent>
         </Card>
       ):(<Tabs

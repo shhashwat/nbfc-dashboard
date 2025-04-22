@@ -170,6 +170,29 @@ const Sidebar: React.FC = () => {
                 </>
               )}
             </NavLink>
+            <NavLink
+              to="/help"
+              className={({ isActive }) =>
+                `flex items-center px-4 py-1 rounded-full ${
+                  isActive
+                    ? "bg-blue-100 text-blue-600 font-bold"
+                    : "text-gray-700 hover:bg-blue-100 hover:text-blue-600 hover:font-bold"
+                }`
+              }
+            >
+              {({ isActive }) => (
+                <>
+                  <img
+                    src="/images/icons/help_sidebar.svg"
+                    alt="reports"
+                    className={`mr-2 w-6  hover:filter-blue ${
+                      isActive ? "filter-blue" : ""
+                    }`}
+                  />
+                  Help
+                </>
+              )}
+            </NavLink>
           </li>
         </ul>
       </nav>
