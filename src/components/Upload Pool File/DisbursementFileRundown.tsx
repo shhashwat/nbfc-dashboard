@@ -8,6 +8,7 @@ import { SkeletonTable } from "../ui/skeleton-table";
 import { Button } from "../ui/button";
 import { ChevronUpSquare } from "lucide-react";
 import {DataTableDemo} from "@/components/ui/data-table";
+import { Link } from "react-router-dom";
 
 const DisbursementFileRundown = () => {
     const [loading, setLoading] = useState(true);
@@ -169,10 +170,12 @@ const DisbursementFileRundown = () => {
             alt="NBFC_BRE_disbursement"
           />
         </Button>
-        <Button className="flex justify-between min-w-[11rem] items-center bg-[#0089CF] hover:bg-[#0089CF]/75">
-          <p>Disbursed Total POS Amount</p>
-          <ChevronUpSquare />
-        </Button>
+        <Link to={"/upload-pool-file/file-infer"}>
+          <Button className="flex justify-between min-w-[11rem] items-center bg-[#0089CF] hover:bg-[#0089CF]/75">
+            <p>Disbursed Total POS Amount</p>
+            <ChevronUpSquare />
+          </Button>
+        </Link>
       </div>
 
       {/* TABLE SKELETONS */}

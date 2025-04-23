@@ -23,10 +23,10 @@ const formSchema = z.object({
     .refine(
       (file) => {
         const allowedTypes = [
-          "image/jpeg", // jpg, jpeg
-          "image/png", // png
-          "image/gif", // gif
-          "application/pdf", // pdf
+          // "image/jpeg", // jpg, jpeg
+          // "image/png", // png
+          // "image/gif", // gif
+          // "application/pdf", // pdf
           "text/csv", // csv
           "application/vnd.ms-excel", // xls
           "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", // xlsx
@@ -36,7 +36,7 @@ const formSchema = z.object({
       },
       {
         message:
-          "Only the following file types are accepted: jpg, jpeg, png, gif, pdf, csv, xls, xlsx, xlsm",
+          "Only the following file types are accepted: csv, xls, xlsx, xlsm",
       }
     )
     .optional(),
@@ -54,7 +54,7 @@ const DisbursementFileUpload = () => {
 
   const onSubmit: SubmitHandler<z.infer<typeof formSchema>> = (data) => {
     console.log("Disbursement File submitted with data:", data);
-    navigate("/nbfc/disbursement-file-rundown");
+    navigate("/upload-pool-file/file-rundown");
   };
 
   return (
@@ -114,7 +114,7 @@ const DisbursementFileUpload = () => {
                       {/* Hidden File Input */}
                       <input
                         type="file"
-                        accept=".jpg, .jpeg, .png, .gif, .pdf, .csv, .xls, .xlsx, .xlsm"
+                        accept=".csv, .xls, .xlsx, .xlsm"
                         ref={(e) => {
                           fileRef.current = e;
                           field.ref(e);
