@@ -190,7 +190,7 @@ export function DataTableDemo() {
         </div>
 
         {/* Table */}
-        <div className="rounded-md border border-[#D1E9FF]">
+        <div className="border border-[#D1E9FF]">
           <Table>
             <TableHeader>
               {table.getHeaderGroups().map((headerGroup) => (
