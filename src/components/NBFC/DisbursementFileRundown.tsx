@@ -11,28 +11,34 @@ const DisbursementFileRundown = () => {
     // const [loading, setLoading] = useState(true);
     const [progress1, setProgress1] = useState(0);
     const [progress2, setProgress2] = useState(0);
+    const [progress3, setProgress3] = useState(0);
     const targetValue = 100; // set this to your desired value
 
     useEffect(() => {
-      let current1 = 0;
-      const interval1 = setInterval(() => {
-        current1 += 1;
-        setProgress1(current1);
-        if (current1 >= targetValue) {
-          clearInterval(interval1);
+      let isMounted = true;
 
-          // Start progress2 once progress1 is done
-          let current2 = 0;
-          const interval2 = setInterval(() => {
-            current2 += 1;
-            setProgress2(current2);
-            if (current2 >= targetValue) clearInterval(interval2);
-          }, 50); // Adjust speed for progress2 here too
+      const runProgress = async ({ setProgress }: RunProgressParams): Promise<void> => {
+        let current = 0;
+        while (isMounted && current <= targetValue) {
+          setProgress(current);
+          await new Promise((resolve) => setTimeout(resolve, 50));
+          current += 1;
         }
-      }, 50); // Speed of progress1
+      };
 
-      return () => clearInterval(interval1); // Cleanup on unmount
+      const startProgressSequence = async () => {
+        await runProgress({ setProgress: setProgress1 });
+        await runProgress({ setProgress: setProgress2 });
+        await runProgress({ setProgress: setProgress3 });
+      };
+
+      startProgressSequence();
+
+      return () => {
+        isMounted = false;
+      };
     }, [targetValue]);
+
 
     
   return (
@@ -102,19 +108,20 @@ const DisbursementFileRundown = () => {
             />
             <span className="flex flex-col items-center space-y-1">
               <ButtonRound
-                src="NBFC_BRE_disbursement"
+                src="NBFC_BRE_dark_disbursement"
                 alt="nbfc bre disbursement"
                 id="nbfc_bre_disbursement"
                 progress={progress2}
               />
               <Label htmlFor="nbfc_bre_disbursement"> NBFC BRE </Label>
             </span>
-            <Progress value={0} className="w-[14rem] mt-5 -ml-50 -mr-50" />
+            <Progress value={progress3} className="w-[14rem] mt-5 -ml-50 -mr-50" />
             <span className="flex flex-col items-center space-y-1">
               <ButtonRound
                 src="disburse_disbursement"
                 alt="disburse_disbursement"
                 id="disburse_disbursement"
+                progress={progress3}
               />
               <Label htmlFor="disburse_disbursement"> Disburse </Label>
             </span>

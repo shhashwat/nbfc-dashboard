@@ -45,3 +45,7 @@ declare interface ButtonRoundProps {
   className?: string;
   progress? : number;
 }
+
+declare interface RunProgressParams {
+  setProgress: React.Dispatch<React.SetStateAction<number>>;
+}
