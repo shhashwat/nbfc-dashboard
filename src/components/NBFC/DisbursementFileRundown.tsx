@@ -7,12 +7,22 @@ import { useEffect, useState } from "react";
 import { SkeletonTable } from "../ui/skeleton-table";
 import { Button } from "../ui/button";
 import { ChevronUpSquare } from "lucide-react";
+import {DataTableDemo} from "@/components/ui/data-table";
+
 const DisbursementFileRundown = () => {
-    // const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(true);
     const [progress1, setProgress1] = useState(0);
     const [progress2, setProgress2] = useState(0);
     const [progress3, setProgress3] = useState(0);
     const targetValue = 100; // set this to your desired value
+
+    useEffect(() => {
+      const timer = setTimeout(() => {
+        setLoading(false);
+      }, 200);
+
+      return () => clearTimeout(timer);
+    }, []);
 
     useEffect(() => {
       let isMounted = true;
@@ -115,7 +125,10 @@ const DisbursementFileRundown = () => {
               />
               <Label htmlFor="nbfc_bre_disbursement"> NBFC BRE </Label>
             </span>
-            <Progress value={progress3} className="w-[14rem] mt-5 -ml-50 -mr-50" />
+            <Progress
+              value={progress3}
+              className="w-[14rem] mt-5 -ml-50 -mr-50"
+            />
             <span className="flex flex-col items-center space-y-1">
               <ButtonRound
                 src="disburse_disbursement"
@@ -163,9 +176,13 @@ const DisbursementFileRundown = () => {
       </div>
 
       {/* TABLE SKELETONS */}
-      <div className="flex flex-col bg-white shadow-sm rounded-lg p-5 space-y-3 space-x-4">
-        <SkeletonTable rows={5} columns={4} />
-      </div>
+      {loading ? (
+        <div className="flex flex-col bg-white shadow-sm rounded-lg p-5 space-y-3 space-x-4">
+          <SkeletonTable rows={5} columns={4} />
+        </div>
+      ) : (
+        <DataTableDemo />
+      )}
     </div>
   );
 }

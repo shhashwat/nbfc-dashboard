@@ -49,3 +49,14 @@ declare interface ButtonRoundProps {
 declare interface RunProgressParams {
   setProgress: React.Dispatch<React.SetStateAction<number>>;
 }
+
+declare type tableDataParams = {
+  sl: number;
+  nbfcId: string;
+  appId: string;
+  status: "Approved" | "Rejected";
+  name: string;
+  tenure: number;
+  nbfcDisbursedAmount: number;
+  posAmount: number;
+};
