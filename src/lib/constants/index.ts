@@ -593,10 +593,7 @@ export const loanProductConfigTabContent = [
   },
 ];
 
-
-
 //DATA TABLE
-
 export const tableData: tableDataParams[] = [
   {
     sl: 1,

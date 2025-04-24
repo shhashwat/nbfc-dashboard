@@ -29,17 +29,9 @@ import {
   DropdownMenuContent,
   DropdownMenuCheckboxItem,
 } from "@/components/ui/dropdown-menu";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-  PaginationPrevious,
-  PaginationLink,
-  PaginationNext,
-  PaginationEllipsis,
-} from "@/components/ui/pagination";
 
 import { tableData } from "@/lib/constants";
+import PaginationComponent from "../PaginationComponent";
 
 export const columns: ColumnDef<tableDataParams>[] = [
   {
@@ -102,7 +94,7 @@ export const columns: ColumnDef<tableDataParams>[] = [
   },
 ];
 
-export function DataTableDemo() {
+export function DataTable() {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -240,126 +232,8 @@ export function DataTableDemo() {
         </div>
       </div>
 
-      {/* Pagination with ellipses */}
-      <div className="flex items-center justify-center py-4 mr-25">
-        {/* Current page indicator */}
-        <div className="mr-4 text-sm text-gray-600 min-w-[100px]">
-          Page {table.getState().pagination.pageIndex + 1} of{" "}
-          {table.getPageCount()}
-        </div>
-
-        <Pagination>
-          <PaginationContent>
-            <PaginationItem>
-              <PaginationPrevious
-                className={
-                  table.getCanPreviousPage()
-                    ? "mr-2"
-                    : "opacity-50 pointer-events-none mr-2"
-                }
-                onClick={() =>
-                  table.getCanPreviousPage() && table.previousPage()
-                }
-              />
-            </PaginationItem>
-            <PaginationLink
-              onClick={() => table.setPageIndex(0)}
-              className={
-                table.getState().pagination.pageIndex === 0
-                  ? "page-active1"
-                  : "page-inactive1"
-              }
-            >
-              1
-            </PaginationLink>
-
-            {(table.getState().pagination.pageIndex <= 3 ||
-              table.getState().pagination.pageIndex ===
-                table.getPageCount() - 1) && (
-              <>
-                {[1, 2, 3].map((pageIndex) => (
-                  <PaginationItem key={pageIndex}>
-                    <PaginationLink
-                      onClick={() => table.setPageIndex(pageIndex)}
-                      className={
-                        table.getState().pagination.pageIndex === pageIndex
-                          ? "page-active"
-                          : "page-inactive"
-                      }
-                    >
-                      {pageIndex + 1}
-                    </PaginationLink>
-                  </PaginationItem>
-                ))}
-              </>
-            )}
-
-            <PaginationEllipsis className="page-inactive" />
-            {table.getState().pagination.pageIndex >= 4 &&
-              table.getState().pagination.pageIndex < 7 && (
-                <>
-                  {[4, 5, 6].map((pageIndex) => (
-                    <PaginationItem key={pageIndex}>
-                      <PaginationLink
-                        onClick={() => table.setPageIndex(pageIndex)}
-                        className={
-                          table.getState().pagination.pageIndex === pageIndex
-                            ? "page-active"
-                            : "page-inactive"
-                        }
-                      >
-                        {pageIndex + 1}
-                      </PaginationLink>
-                    </PaginationItem>
-                  ))}
-                  <PaginationEllipsis className="page-inactive" />
-                </>
-              )}
-
-            {table.getState().pagination.pageIndex >= 7 &&
-              table.getState().pagination.pageIndex < 9 && (
-                <>
-                  {[7, 8].map((pageIndex) => (
-                    <PaginationItem key={pageIndex}>
-                      <PaginationLink
-                        onClick={() => table.setPageIndex(pageIndex)}
-                        className={
-                          table.getState().pagination.pageIndex === pageIndex
-                            ? "page-active"
-                            : "page-inactive"
-                        }
-                      >
-                        {pageIndex + 1}
-                      </PaginationLink>
-                    </PaginationItem>
-                  ))}
-                </>
-              )}
-
-            <PaginationLink
-              onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-              className={
-                table.getState().pagination.pageIndex ===
-                table.getPageCount() - 1
-                  ? "page-active-last"
-                  : "page-inactive-last"
-              }
-            >
-              {table.getPageCount()}
-            </PaginationLink>
-            <PaginationItem>
-              <PaginationNext
-                className={
-                  table.getCanNextPage()
-                    ? "ml-2"
-                    : "opacity-50 pointer-events-none ml-2"
-                }
-                onClick={() => table.getCanNextPage() && table.nextPage()}
-              />
-            </PaginationItem>
-          </PaginationContent>
-        </Pagination>
-      </div>
+      {/* Pagination */}
+      <PaginationComponent table={table} />
     </div>
   );
 }

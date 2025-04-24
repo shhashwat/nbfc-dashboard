@@ -99,31 +99,6 @@ const Sidebar: React.FC = () => {
           </li>
           <li>
             <NavLink
-              to="/applications"
-              className={({ isActive }) =>
-                `flex items-center px-4 py-1 rounded-full ${
-                  isActive
-                    ? "bg-blue-100 text-blue-600 font-bold"
-                    : "text-gray-700 hover:bg-blue-100 hover:text-blue-600 hover:font-bold"
-                }`
-              }
-            >
-              {({ isActive }) => (
-                <>
-                  <img
-                    src="/images/icons/app_list_sidebar.svg"
-                    alt="applications list"
-                    className={`mr-2 w-6  hover:filter-blue ${
-                      isActive ? "filter-blue" : ""
-                    }`}
-                  />
-                  Applications List
-                </>
-              )}
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
               to="/history"
               className={({ isActive }) =>
                 `flex items-center px-4 py-1 rounded-full ${
