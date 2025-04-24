@@ -17,7 +17,7 @@ const CardHeader = forwardRef<CardHeaderHandle, CardHeaderProps>(
     );
 
     return (
-      <span className="flex items-center justify-between min-w-[100dvh]">
+      <span className="flex items-center justify-start min-w-[100dvh]">
         <span>
           <h2 className="font-bold text-lg">{title}</h2>
           <p className={cn("text-sm text-muted-foreground", pclassName)}>
@@ -25,7 +25,7 @@ const CardHeader = forwardRef<CardHeaderHandle, CardHeaderProps>(
           </p>
         </span>
         {weightage && (
-          <span className="flex items-center justify-center text-sm font-semibold text-gray-500 space-x-2">
+          <span className="ml-60 flex items-center justify-center text-sm font-semibold text-gray-500 space-x-2">
             Weightage
             <Input
               // Attach internal ref
