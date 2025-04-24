@@ -55,7 +55,7 @@ const LoanProductConfig = () => {
     <div className="flex flex-col space-y-4 p-5">
       <CardHeader title="Loan Product Configuration" />
       {loading ? (
-        <Card className="w-[67rem] mt-40">
+        <Card className="w-[calc(100%-16rem)] mt-40">
           <CardContent>
             <SkeletonTableShimmer rows={2} columns={3} />
           </CardContent>
