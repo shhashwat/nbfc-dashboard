@@ -64,7 +64,7 @@ const LoanProductConfig = () => {
             value={activeTab}
             onValueChange={handleTabChange}
           >
-            <TabsList className="w-[67rem]">
+            <TabsList>
               {loanProductConfigTabs.map((tab) => (
                 <TabsTrigger className="bre-tabs" value={tab.key} key={tab.key}>
                   <div className="flex items-center space-x-2">
