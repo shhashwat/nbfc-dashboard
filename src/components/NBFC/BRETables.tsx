@@ -119,7 +119,7 @@ const BRETables: React.FC<BRETablesProps> = ({
                   {fields.map((field, index) => (
                     <TableRow key={field.id} className="h-12">
                       <TableCell className="w-[30%] flex flex-col">
-                        {paramsArr[index].name}
+                        <p className="font-semibold">{paramsArr[index].name}</p>
                         <p className="text-xs text-gray-500">
                           {paramsArr[index].subtitle}
                         </p>
