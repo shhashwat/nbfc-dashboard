@@ -28,7 +28,7 @@ import { formSkeletons } from "@/lib/constants";
 import CardHeader from "../CardHeader";
 import CardHeadline from "../CardHeadline";
 
-import { rbiLisenceTypes } from "@/lib/constants";
+import { rbiLisenceTypes, countryCodeValues, countryCodes } from "@/lib/constants";
 import { formatIndianNumber } from "@/lib/utils";
 
 const fileSchema = z
@@ -106,6 +106,11 @@ const formSchema = z.object({
     message: "Invalid email address",
   }),
 
+  countryCode: z.enum([...countryCodeValues] as [string, ...string[]], {
+    required_error: "Country code is required",
+    invalid_type_error: "Invalid country code selected",
+  }),
+
   phoneNumber: z
     .string()
     .regex(/^\d{10}$/, { message: "Phone Number must be exactly 10 digits" }),
@@ -147,6 +152,7 @@ const NBFCform = () => {
       regAddress: "",
       contactPerson: "",
       email: "",
+      countryCode: "+91",
       phoneNumber: "",
       website: "",
 
@@ -386,7 +392,7 @@ const NBFCform = () => {
                   )}
                 />
 
-                <FormField
+                {/* <FormField
                   control={form.control}
                   name="phoneNumber"
                   render={({ field }) => (
@@ -398,7 +404,53 @@ const NBFCform = () => {
                       <FormMessage />
                     </FormItem>
                   )}
-                />
+                /> */}
+
+                <FormItem className="mb-4">
+                  <FormLabel>Phone Number</FormLabel>
+                  <FormControl>
+                    <div className="flex">
+                      {/* Country Code Dropdown */}
+                      <FormField
+                        control={form.control}
+                        name="countryCode"
+                        render={({ field }) => (
+                          <Select
+                            onValueChange={field.onChange}
+                            value={field.value}
+                          >
+                            <FormControl>
+                              <SelectTrigger className="rounded-r-none w-20">
+                                <SelectValue placeholder="+91" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              {countryCodes.map((item) => (
+                                <SelectItem key={item.code} value={item.code}>
+                                  {item.code}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        )}
+                      />
+
+                      {/* Phone Number Input */}
+                      <FormField
+                        control={form.control}
+                        name="phoneNumber"
+                        render={({ field }) => (
+                          <Input
+                            placeholder="Phone Number"
+                            {...field}
+                            className="rounded-l-none"
+                          />
+                        )}
+                      />
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
 
                 <FormField
                   control={form.control}
@@ -856,29 +908,6 @@ const NBFCform = () => {
 
                         {/* Buttons Row */}
                         <div className="flex gap-2">
-                          {/* Sample Button (non-functional) */}
-                          {/* <Button
-                          type="button"
-                          variant="outline"
-                          className="rounded-sm bg-white text-blue-600 border-blue-500 hover:bg-blue-50"
-                        >
-                          Sample
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="ml-2 h-4 w-4"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth="2"
-                              d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V4"
-                            />
-                          </svg>
-                        </Button> */}
-
                           {/* Upload Button */}
                           <Button
                             type="button"

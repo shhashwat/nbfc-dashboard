@@ -87,7 +87,7 @@ export default function PaginationComponent<TData>({
   }
 
   return (
-    <div className="flex items-center justify-center py-4 space-x-2">
+    <div className="flex items-center justify-center py-4 space-x-2 mr-24">
       <div className="min-w-[100px] text-sm text-gray-600">
         Page {currentPage} of {totalPages}
       </div>

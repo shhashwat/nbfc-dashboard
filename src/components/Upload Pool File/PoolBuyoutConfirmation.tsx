@@ -10,7 +10,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
-import { ChevronUpSquare, CircleX } from "lucide-react";
+import { CircleX } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export function PoolBuyoutConfirmation() {
@@ -19,7 +19,7 @@ export function PoolBuyoutConfirmation() {
       <AlertDialogTrigger asChild>
         <Button className="flex justify-between min-w-[11rem] items-center bg-[#0089CF] hover:bg-[#0089CF]/75">
           <p>Disbursed Total POS Amount</p>
-          <ChevronUpSquare />
+          <img src="/images/icons/upload-2-fill.svg" alt="" />
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent className="scale-105">
@@ -70,7 +70,6 @@ export function PoolBuyoutConfirmation() {
             cannot be reversed.
           </p>
         </section>
-
         <AlertDialogFooter className="gap-18">
           <AlertDialogCancel className="text-[#0089CF] border-[#0089CF]">
             Cancel
