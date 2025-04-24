@@ -133,7 +133,6 @@ export function DataTable() {
 
   return (
     <div className="w-full">
-      {/* Top Bar */}
       <div className="bg-white shadow-sm rounded-lg mb-4">
         <div className="flex items-center justify-between p-2 border-b-[#C3EEFF] border-b-2">
           <h2 className="ml-4 text-lg font-bold text-[#62748E]">
