@@ -6,7 +6,8 @@
 
 body {
     background: #C3EEFF;
-    font-family: 'Manrope', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    /* font-family: 'Manrope', sans-serif; */
 }
 
 @theme inline {

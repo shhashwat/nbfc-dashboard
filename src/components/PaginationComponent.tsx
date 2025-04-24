@@ -13,14 +13,6 @@ import {
 
 const DOTS = "DOTS" as const;
 
-type UsePaginationParams = {
-  totalCount: number;
-  siblingCount?: number;
-  currentPage: number;
-};
-
-type PaginationRange = Array<number | typeof DOTS>;
-
 /**
  * Hook to compute pagination range including dots
  */

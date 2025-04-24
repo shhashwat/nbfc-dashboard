@@ -135,8 +135,8 @@ export function DataTable() {
     <div className="w-full">
       {/* Top Bar */}
       <div className="bg-white shadow-sm rounded-lg mb-4">
-        <div className="flex items-center justify-between p-4 border-b">
-          <h2 className="text-lg font-semibold text-gray-700">
+        <div className="flex items-center justify-between p-2 border-b-[#C3EEFF] border-b-2">
+          <h2 className="ml-4 text-lg font-bold text-[#62748E]">
             Loan Application List
           </h2>
           <div className="flex items-center gap-2">
@@ -149,7 +149,7 @@ export function DataTable() {
             <p className="text-[#C3EEFF] scale-250 w-[1px]">|</p>
             <Button
               variant="outline"
-              className="text-[#0A4DA2] border-none p-0"
+              className="text-[#0A4DA2] border-none p-0 hover:text-[#0A4DA2]/80 hover:bg-white"
             >
               <ArrowUpDown />
             </Button>
@@ -157,7 +157,7 @@ export function DataTable() {
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="outline"
-                  className="text-[#0A4DA2] border-none p-0"
+                  className="text-[#0A4DA2] border-none p-0 hover:text-[#0A4DA2]/80 hover:bg-white"
                 >
                   <Funnel />
                 </Button>
@@ -208,7 +208,7 @@ export function DataTable() {
                     data-state={row.getIsSelected() && "selected"}
                   >
                     {row.getVisibleCells().map((cell) => (
-                      <TableCell key={cell.id} className="text-sm">
+                      <TableCell key={cell.id} className="text-sm font-normal">
                         {flexRender(
                           cell.column.columnDef.cell,
                           cell.getContext()
