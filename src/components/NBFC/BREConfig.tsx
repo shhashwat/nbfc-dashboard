@@ -55,15 +55,15 @@ const BREConfig = () => {
     <div className="flex flex-col space-y-4 p-5">
       <CardHeader title="BRE Configuration" />
       {loading ? (
-        <Card className="w-[calc(100vw-16rem)] mt-40">
+        <Card className="w-[67rem] mt-40">
           <CardContent>
             <SkeletonTableShimmer rows={4} columns={3} />
           </CardContent>
         </Card>
-      ) : (
-        <Tabs
+      ):(<Tabs
           value={activeTab}
           onValueChange={handleTabChange}
+          className="w-[400px]"
         >
           <TabsList>
             {breConfigTabs.map((tab) => (
@@ -93,8 +93,7 @@ const BREConfig = () => {
               />
             </TabsContent>
           ))}
-        </Tabs>
-      )}
+        </Tabs>)}
     </div>
   );
 };

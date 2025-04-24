@@ -14,7 +14,7 @@ const Sidebar: React.FC = () => {
 };
 
   return (
-    <aside className="sticky top-0 h-screen w-64 bg-white p-4">
+    <aside className="sticky top-0 h-screen min-w-64 bg-white p-4">
       <div className="mb-8">
         <NavLink to="/" className="block">
           <img
