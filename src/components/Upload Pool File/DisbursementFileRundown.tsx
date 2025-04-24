@@ -8,6 +8,7 @@ import { SkeletonTable } from "../ui/skeleton-table";
 import { Button } from "../ui/button";
 import {DataTable} from "@/components/ui/data-table";
 import { PoolBuyoutConfirmation } from "./PoolBuyoutConfirmation";
+import { getFormattedDateTime } from "@/lib/utils";
 
 const DisbursementFileRundown = () => {
     const [loading, setLoading] = useState(true);
@@ -19,7 +20,7 @@ const DisbursementFileRundown = () => {
     useEffect(() => {
       const timer = setTimeout(() => {
         setLoading(false);
-      }, 200);
+      }, 5750);
 
       return () => clearTimeout(timer);
     }, []);
@@ -91,8 +92,7 @@ const DisbursementFileRundown = () => {
               />
               <Label htmlFor="folder_open"> File Uploaded </Label>
               <Label htmlFor="folder_open" className="text-[#62748E]">
-                {" "}
-                22 Nov, 2024 9:15{" "}
+                {getFormattedDateTime()}
               </Label>
             </span>
             <Progress
@@ -107,10 +107,11 @@ const DisbursementFileRundown = () => {
                 progress={progress1}
               />
               <Label htmlFor="file_processed"> File Processed </Label>
-              <Label htmlFor="file_processed" className="text-[#62748E]">
-                {" "}
-                22 Nov, 2024 9:15{" "}
-              </Label>
+              {progress1 === 100 && (
+                <Label htmlFor="file_processed" className="text-[#62748E]">
+                  {getFormattedDateTime()}
+                </Label>
+              )}
             </span>
             <Progress
               value={progress2}
@@ -124,6 +125,14 @@ const DisbursementFileRundown = () => {
                 progress={progress2}
               />
               <Label htmlFor="nbfc_bre_disbursement"> NBFC BRE </Label>
+              {progress2 === 100 && (
+                <Label
+                  htmlFor="nbfc_bre_disbursement"
+                  className="text-[#62748E]"
+                >
+                  {getFormattedDateTime()}
+                </Label>
+              )}
             </span>
             <Progress
               value={progress3}
@@ -137,6 +146,14 @@ const DisbursementFileRundown = () => {
                 progress={progress3}
               />
               <Label htmlFor="disburse_disbursement"> Disburse </Label>
+              {progress3 === 100 && (
+                <Label
+                  htmlFor="disburse_disbursement"
+                  className="text-[#62748E]"
+                >
+                  {getFormattedDateTime()}
+                </Label>
+              )}
             </span>
           </span>
           {/** DISBURSEMENT FILE RUNDOWN */}
@@ -169,7 +186,7 @@ const DisbursementFileRundown = () => {
             alt="NBFC_BRE_disbursement"
           />
         </Button>
-        <PoolBuyoutConfirmation/>
+        <PoolBuyoutConfirmation />
       </div>
 
       {/* TABLE SKELETONS */}
