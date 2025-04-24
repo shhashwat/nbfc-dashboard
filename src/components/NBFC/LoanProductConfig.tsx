@@ -60,34 +60,33 @@ const LoanProductConfig = () => {
             <SkeletonTableShimmer rows={2} columns={3} />
           </CardContent>
         </Card>
-      ) : (<Tabs
-            value={activeTab}
-            onValueChange={handleTabChange}
-          >
-            <TabsList className="w-[67rem]">
-              {loanProductConfigTabs.map((tab) => (
-                <TabsTrigger className="bre-tabs" value={tab.key} key={tab.key}>
-                  <div className="flex items-center space-x-2">
-                    {submittedTabs.includes(tab.key) && (
-                      <CircleCheck className="text-green-500 text-sm" />
-                    )}
-                    <span>{tab.name}</span>
-                  </div>
-                </TabsTrigger>
-              ))}
-            </TabsList>
-            {loanProductConfigTabContent.map((tab) => (
-              <TabsContent key={tab.value} value={tab.value}>
-                <LoanProductTables
-                  title={tab.title}
-                  subtitle={tab.subtitle}
-                  navTo={tab.navTo}
-                  paramsArr={tab.paramsArr}
-                  onSubmit={() => handleFormSubmit(tab.value)} // Pass the submission callback
-                />
-              </TabsContent>
+      ) : (
+        <Tabs value={activeTab} onValueChange={handleTabChange}>
+          <TabsList className="w-[calc(100vw-16rem)]">
+            {loanProductConfigTabs.map((tab) => (
+              <TabsTrigger className="bre-tabs" value={tab.key} key={tab.key}>
+                <div className="flex items-center space-x-2">
+                  {submittedTabs.includes(tab.key) && (
+                    <CircleCheck className="text-green-500 text-sm" />
+                  )}
+                  <span>{tab.name}</span>
+                </div>
+              </TabsTrigger>
             ))}
-          </Tabs>)}
+          </TabsList>
+          {loanProductConfigTabContent.map((tab) => (
+            <TabsContent key={tab.value} value={tab.value}>
+              <LoanProductTables
+                title={tab.title}
+                subtitle={tab.subtitle}
+                navTo={tab.navTo}
+                paramsArr={tab.paramsArr}
+                onSubmit={() => handleFormSubmit(tab.value)} // Pass the submission callback
+              />
+            </TabsContent>
+          ))}
+        </Tabs>
+      )}
     </div>
   );
 };

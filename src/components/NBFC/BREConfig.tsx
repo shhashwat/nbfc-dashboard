@@ -64,9 +64,8 @@ const BREConfig = () => {
         <Tabs
           value={activeTab}
           onValueChange={handleTabChange}
-          className="w-[400px]"
         >
-          <TabsList className="">
+          <TabsList>
             {breConfigTabs.map((tab) => (
               <TabsTrigger
                 className="bre-tabs"
