@@ -28,7 +28,7 @@ import { formSkeletons } from "@/lib/constants";
 import CardHeader from "../CardHeader";
 import CardHeadline from "../CardHeadline";
 
-import { rbiLisenceTypes, countryCodeValues, countryCodes } from "@/lib/constants";
+import { rbiLisenceTypes} from "@/lib/constants";
 import { formatIndianNumber } from "@/lib/utils";
 
 const fileSchema = z
@@ -106,11 +106,6 @@ const formSchema = z.object({
     message: "Invalid email address",
   }),
 
-  countryCode: z.enum([...countryCodeValues] as [string, ...string[]], {
-    required_error: "Country code is required",
-    invalid_type_error: "Invalid country code selected",
-  }),
-
   phoneNumber: z
     .string()
     .regex(/^\d{10}$/, { message: "Phone Number must be exactly 10 digits" }),
@@ -152,7 +147,6 @@ const NBFCform = () => {
       regAddress: "",
       contactPerson: "",
       email: "",
-      countryCode: "+91",
       phoneNumber: "",
       website: "",
 
@@ -392,65 +386,28 @@ const NBFCform = () => {
                   )}
                 />
 
-                {/* <FormField
+                <FormField
                   control={form.control}
                   name="phoneNumber"
                   render={({ field }) => (
                     <FormItem className="mb-4">
                       <FormLabel>Phone Number</FormLabel>
                       <FormControl>
-                        <Input placeholder="Phone Number" {...field} />
+                        <div className="relative flex">
+                          <span className="inline-flex items-center px-2 rounded-l-md border border-r-0 border-input bg-gray-50 text-sm">
+                            +91
+                          </span>
+                          <Input
+                            placeholder="Phone Number"
+                            className="rounded-l-none"
+                            {...field}
+                          />
+                        </div>
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
-                /> */}
-
-                <FormItem className="mb-4">
-                  <FormLabel>Phone Number</FormLabel>
-                  <FormControl>
-                    <div className="flex">
-                      {/* Country Code Dropdown */}
-                      <FormField
-                        control={form.control}
-                        name="countryCode"
-                        render={({ field }) => (
-                          <Select
-                            onValueChange={field.onChange}
-                            value={field.value}
-                          >
-                            <FormControl>
-                              <SelectTrigger className="rounded-r-none w-20">
-                                <SelectValue placeholder="+91" />
-                              </SelectTrigger>
-                            </FormControl>
-                            <SelectContent>
-                              {countryCodes.map((item) => (
-                                <SelectItem key={item.code} value={item.code}>
-                                  {item.code}
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                        )}
-                      />
-
-                      {/* Phone Number Input */}
-                      <FormField
-                        control={form.control}
-                        name="phoneNumber"
-                        render={({ field }) => (
-                          <Input
-                            placeholder="Phone Number"
-                            {...field}
-                            className="rounded-l-none"
-                          />
-                        )}
-                      />
-                    </div>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
+                />
 
                 <FormField
                   control={form.control}
