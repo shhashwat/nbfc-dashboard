@@ -124,11 +124,9 @@ export default function PaginationComponent<TData>({
                 key={page}
                 onClick={() => table.setPageIndex(page - 1)}
                 className={`
-                    ${currentPage === page ? "page-active" : "page-inactive"}
-                    ${idx === 0 ? "page-active1" : "page-inactive1"}
-                    ${
-                      idx === paginationRange.length - 1 ? "rounded-r-md" : ""
-                    }`}
+                  ${currentPage === page ? "page-active" : "page-inactive"}
+                  ${idx === 0 ? "page-active1" : ""}
+                  ${idx === paginationRange.length - 1 ? "page-active-last" : ""}`}
               >
                 {page}
               </PaginationLink>

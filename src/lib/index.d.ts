@@ -60,3 +60,11 @@ declare type tableDataParams = {
   nbfcDisbursedAmount: number;
   posAmount: number;
 };
+
+declare type UsePaginationParams = {
+  totalCount: number;
+  siblingCount?: number;
+  currentPage: number;
+};
+
+declare type PaginationRange = Array<number | typeof DOTS>;

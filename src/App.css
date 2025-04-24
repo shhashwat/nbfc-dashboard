@@ -159,17 +159,9 @@ body {
 }
 
 .page-active1 {
-  @apply bg-[#0089CF] rounded-none rounded-l-sm
-}
-
-.page-inactive1 {
-  @apply bg-white border-1 hover:bg-[#0089CF]/80 rounded-none rounded-l-sm
+  @apply rounded-l-sm
 }
 
 .page-active-last {
-  @apply bg-[#0089CF] rounded-none rounded-r-sm
-}
-
-.page-inactive-last {
-  @apply bg-white border-1 hover:bg-[#0089CF]/80 rounded-none rounded-r-sm
+  @apply rounded-r-sm
 }
