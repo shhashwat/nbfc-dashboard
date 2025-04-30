@@ -1,17 +1,17 @@
 import { NavLink, useLocation } from "react-router-dom";
 import React from "react";
-import { sidebar } from "@/lib/constants/sidebar"; // adjust path as needed
+import { sidebar } from "@/lib/constants/sidebar";
 import { cn } from "@/lib/utils";
 
 const Sidebar: React.FC = () => {
   const location = useLocation();
 
-  const isActivePath = (to: string, match?: string[]) => {
+  const isActivePath = (to: string, match: string[]) => {
   if (match) {
     return match.some((m) => location.pathname === m || location.pathname.startsWith(m + "/"));
   }
   return location.pathname === to;
-};
+  };
 
   return (
     <aside className="sticky top-0 h-screen min-w-64 bg-white p-4">

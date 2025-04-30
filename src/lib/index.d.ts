@@ -68,3 +68,10 @@ declare type UsePaginationParams = {
 };
 
 declare type PaginationRange = Array<number | typeof DOTS>;
+
+declare interface SidebarItem {
+  to: string;
+  label: string;
+  icon: string;
+  match: string[];
+}

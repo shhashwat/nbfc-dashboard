@@ -1,4 +1,4 @@
-export const sidebar = [
+export const sidebar: SidebarItem[] = [
   {
     to: "/overview",
     label: "Overview",
